@@ -21,9 +21,9 @@ function DiagramSystemtoApi()  {
           const [schema, { onChange }] = useSchema(initialSchema);
 
         return ( 
-            <div style={{ width: '100%' }}>
+            <React.Fragment>
             <Diagram schema={schema} onChange={onChange} />
-          </div>
+          </React.Fragment>
            
 
          );
