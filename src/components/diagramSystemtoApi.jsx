@@ -1,33 +1,46 @@
-import Diagram, { createSchema, useSchema } from 'beautiful-react-diagrams';
 import React, { Component } from 'react';
+import AboutMethod from './aboutmethod';
 
-function DiagramSystemtoApi()  {
-     
+class DiagramSystemtoApi extends Component  {
+  state = {
+    showInfoaboutMethod: false,
+    
+  }
+  onClickListItem  = (e, id) =>{
+    console.log(id);
+    this.setState({showInfoaboutMethod: true});
+    
+  }
+  
+    render() {   
+      
+      const systemClassestoLibrary=[ "class1", "class2", "class3", "class4"]
+      const listItems = systemClassestoLibrary.map((i) =>
+      <li key={i} onClick={(event)=> this.onClickListItem(event,i)} >
+        {i}
+      </li>
+    );
 
-        const initialSchema = createSchema({
-            nodes: [
-              { id: 'node-1', content: 'Node 1', coordinates: [250, 60], },
-              { id: 'node-2', content: 'Node 2', coordinates: [100, 200], },
-              { id: 'node-3', content: 'Node 3', coordinates: [250, 220], },
-              { id: 'node-4', content: 'Node 4', coordinates: [400, 200], },
-            ],
-            links: [
-              { input: 'node-1',  output: 'node-2' },
-              { input: 'node-1',  output: 'node-3' },
-              { input: 'node-1',  output: 'node-4' },
-            ]
-          });
-
-          const [schema, { onChange }] = useSchema(initialSchema);
 
         return ( 
-            <React.Fragment>
-            <Diagram schema={schema} onChange={onChange} />
-          </React.Fragment>
-           
+          <React.Fragment>
+              <div > 
+                <ul>{listItems}</ul>
+              
+                </div >
 
-         );
-    
+                {this.state.showInfoaboutMethod && 
+                <div>
+                  <AboutMethod />
+                  <AboutMethod />
+                  <AboutMethod />
+                </div>
+               }
+                <button onClick={this.props.onbacktoTableclick}>Back</button>
+            </React.Fragment>
+          
+       );
+  }
 }
- 
+    
 export default DiagramSystemtoApi;

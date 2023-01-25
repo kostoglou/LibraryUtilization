@@ -1,6 +1,225 @@
-.App {
-  text-align: center;
+body{
+  color: #ececec;
+  min-height: 100%;
+  font-family: sans-serif;
+  font-size: 2rem;
+  background-color: #141010; 
+  margin: 0;
 }
+
+body > * {
+  text-align: center;
+  padding: 50px;
+  /*outline: solid 5px #385170;*/
+  border-radius: 10px;
+}
+
+.header{
+  grid-area: header;
+}
+
+.sidebar{
+  grid-area: aside;
+}
+
+.main{
+  grid-area: main;
+  background-color: #680747;
+}
+
+
+body {
+  display: grid;
+  grid: 
+  "header"   100px
+  "aside"    50px
+  "main"     auto
+}
+
+.investigate{
+  position:relative;
+  width: 200px;
+  height: 60px;
+  background-color: #142d4c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ececec;
+  font-weight: 600;
+  letter-spacing: 2px;
+  padding-left: 2.5em;
+  margin: auto;
+  border-radius: 2em;
+  border-top: 0.5px solid #ececec;
+  border-left: 0.5px solid #ececec;
+  transition: padding 0.5s ease 0s;
+  overflow: hidden;
+}
+
+.investigate:hover{
+  padding-left: 0px;
+  padding-right: 2.5em;
+  color: #f441a5;
+  cursor: pointer;
+}
+
+.investigate span {
+  position:absolute;
+  width: 50px;
+  height: 50px;
+  left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f3f3f3;
+  font-size: 2em;
+  transition: left .7s ease 0s;
+}
+
+.investigate:hover span {
+  left: calc(100% - 55px);
+}
+
+.investigate::after{
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 100px;
+  z-index: -1;
+  background-color: #f3f3f391;
+  transform: translate(-200px) skew(35deg);
+  transition: transform 0.7s ease 0s;
+}
+
+.investigate:hover::after{
+  transform: translate(180px) skew(35deg);
+}
+
+/*.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}*/
+
+ul{
+  list-style: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border-radius: 10px;
+}
+
+ul li {
+    padding: 2px;
+    background-color: #142d4c;
+    position: relative;
+    list-style: none;
+    margin: auto;
+    border-radius: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+button{
+  position: absolute;
+  border: none;
+  color: #ffffff;
+  width: 5em;
+  height: 3em;
+  line-height: 2em;
+  text-align: center;
+  background: linear-gradient(90deg, #f70776, #8342a4, #af7195, #c3195d);
+  background-size: 300%;
+  border-radius: 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 1;
+}
+
+button:hover{
+  animation: animation 8s linear infinite;
+  border: none;
+  
+}
+
+@keyframes animation{
+  0% {background-position: 0%;}
+  100% {background-position: 400%;}
+}
+
+button::before{
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+  background: linear-gradient(90deg, #f70776, #8342a4, #af7195, #c3195d);
+  background-size: 400%;
+  border-radius: 10px;
+  transition: 1s;
+  
+}
+
+button:hover::before{
+  filter: blur(10px);
+}
+
+
+
+/*.box{
+  position: relative;
+  width: 300px;
+  height: 200px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.box::before{
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background-image: conic-gradient(transparent, transparent, transparent, #f638dc);
+  animation: rotate 4s linear infinite;
+}
+
+.box::after{
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background-image: conic-gradient(transparent, transparent, transparent, #ffb5b5);
+  animation: rotate 4s linear infinite;
+  animation-delay: -2s;
+}
+
+@keyframes rotate {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+  
+}*/
+
+
 
 .App-logo {
   height: 10vmin;
@@ -14,7 +233,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color:#200f21;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

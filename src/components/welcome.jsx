@@ -8,7 +8,7 @@ class Welcome extends Component {
         return (
             <React.Fragment>
                 <div >
-                    <input type="url" id="projectUrl" name="projectUrl"></input>
+                    <input class="input" type="url" id="projectUrl" name="projectUrl"></input>
                     <button onClick={this.props.ongoclick}>GO</button>
                     
 

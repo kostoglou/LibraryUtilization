@@ -22,12 +22,18 @@ handleGoClick = () =>{
 handleBackClick = () =>{
   this.setState({showWelcome: true});
   this.setState({showTable: false});
+  this.setState({showDiagram1:false})
 };
 
 handleClickofTableofLibrary = () =>{
   this.setState({showDiagram1:true});
+  this.setState({showTable:false});
 }
 
+handleBacktoTableClick = () =>{
+  this.setState({showTable:true});
+  this.setState({showDiagram1:false});
+}
 
 render(){
    
@@ -43,16 +49,18 @@ render(){
     {systemclass:"Class 3", firstmethod:"Method 1"},
   ] 
     return (
-      <div className="App">
-        <header className="App-header">
-        <h1 id='libraryUtilization'>Library Utilization</h1>  
-        {this.state.showWelcome && <Welcome ongoclick={this.handleGoClick}/>}
-        {this.state.showTable && <MyTable onclickoftableoflibrary={this.handleClickofTableofLibrary}
-                                          data={data} onbackclick={this.handleBackClick}/>}
-        {this.state.showDiagram1 && <DiagramSystemtoApi />}
-          
-      </header>
-    </div>
+      <body >
+        <header class="header"> </header>
+        <aside class="sidebar"></aside>
+        <main class="main">
+          <h1 class="box" id='libraryUtilization'>Library Utilization</h1>  
+            {this.state.showWelcome && <Welcome ongoclick={this.handleGoClick}/>}
+            {this.state.showTable && <MyTable onclickoftableoflibrary={this.handleClickofTableofLibrary}
+                                              data={data} onbackclick={this.handleBackClick}/>}
+            {this.state.showDiagram1 && <DiagramSystemtoApi onbacktoTableclick={this.handleBacktoTableClick}/>}
+        </main>
+        
+      </body>
   );
 }
 }

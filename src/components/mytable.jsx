@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Table from 'rc-table';
+import { HiArrowRightCircle } from 'react-icons/hi2';
+
 
 class MyTable extends Component {
   constructor(props){
@@ -8,10 +10,9 @@ class MyTable extends Component {
    
     onClick =(key,e)=>{
       console.log("key: "+key);
-    this.props.onclickoftableoflibrary();
+    this.props.onclickoftableoflibrary(); 
      
     }
-    
 
     render() { 
         const columns = [
@@ -44,20 +45,23 @@ class MyTable extends Component {
               dataIndex: '',
               key: 'd',
               render: (text, record) => (
-                <button onClick={e => this.onClick(record.library, e)} href="#">
-                  investigate
+                <button class="investigate" onClick={e => this.onClick(record.library, e)} href="#">
+                  investigate <span><HiArrowRightCircle /></span>
                 </button>
               ),
             },
           ];
 
-          
-
-
         return (
           <React.Fragment>
-            <Table columns={columns} data={this.props.data} />     
-            <button onClick={this.props.onbackclick}>Back</button>
+          
+              <main>
+                <Table columns={columns} data={this.props.data} />
+                <button onClick={this.props.onbackclick}>Back</button>
+              </main>
+                   
+              
+          
             
             
           </React.Fragment>
