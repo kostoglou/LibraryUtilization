@@ -45,7 +45,7 @@ class MyTable extends Component {
               dataIndex: '',
               key: 'd',
               render: (text, record) => (
-                <button class="investigate" onClick={e => this.onClick(record.library, e)} href="#">
+                <button className="investigate" onClick={e => this.onClick(record.library, e)} href="#">
                   investigate <span><HiArrowRightCircle /></span>
                 </button>
               ),
@@ -57,13 +57,9 @@ class MyTable extends Component {
           
               <main>
                 <Table columns={columns} data={this.props.data} />
-                <button onClick={this.props.onbackclick}>Back</button>
+                <button className="backorgobutton" onClick={this.props.onbackclick}>Back</button>
               </main>
                    
-              
-          
-            
-            
           </React.Fragment>
         );
     }

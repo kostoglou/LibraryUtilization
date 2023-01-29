@@ -1,4 +1,5 @@
 
+import { grid } from '@mui/system';
 import React, { useEffect, useRef } from 'react';
 import { Network } from 'vis-network';
 
@@ -32,7 +33,7 @@ function AboutMethod(){
     
         return ( 
 
-            <div ref={container} style={{ height: '500px', width: '800px' }} />
+            <div ref={container} style={{ backgroundColor:'#ac9ea7', alignItems:'center', borderRadius:'50px', height: '500px', width: '800px' }} />
            
 
          );

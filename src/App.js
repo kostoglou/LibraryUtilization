@@ -49,18 +49,19 @@ render(){
     {systemclass:"Class 3", firstmethod:"Method 1"},
   ] 
     return (
-      <body >
-        <header class="header"> </header>
-        <aside class="sidebar"></aside>
-        <main class="main">
-          <h1 class="box" id='libraryUtilization'>Library Utilization</h1>  
+      <body id="body">
+        <header> HEADER</header>
+        <aside> ASIDE</aside>
+        <main>
+          <h1 className="box" id='libraryUtilization'>Library Utilization</h1>  
             {this.state.showWelcome && <Welcome ongoclick={this.handleGoClick}/>}
             {this.state.showTable && <MyTable onclickoftableoflibrary={this.handleClickofTableofLibrary}
                                               data={data} onbackclick={this.handleBackClick}/>}
             {this.state.showDiagram1 && <DiagramSystemtoApi onbacktoTableclick={this.handleBacktoTableClick}/>}
         </main>
-        
+        <footer> FOOTER</footer>
       </body>
+      
   );
 }
 }

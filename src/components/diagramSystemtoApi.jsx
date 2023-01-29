@@ -16,7 +16,7 @@ class DiagramSystemtoApi extends Component  {
       
       const systemClassestoLibrary=[ "class1", "class2", "class3", "class4"]
       const listItems = systemClassestoLibrary.map((i) =>
-      <li key={i} onClick={(event)=> this.onClickListItem(event,i)} >
+      <li id="listitems" key={i} onClick={(event)=> this.onClickListItem(event,i)} >
         {i}
       </li>
     );
@@ -24,19 +24,19 @@ class DiagramSystemtoApi extends Component  {
 
         return ( 
           <React.Fragment>
-              <div > 
+              <main > 
                 <ul>{listItems}</ul>
               
-                </div >
+                </main >
 
                 {this.state.showInfoaboutMethod && 
-                <div>
+                <main>
                   <AboutMethod />
                   <AboutMethod />
                   <AboutMethod />
-                </div>
+                </main>
                }
-                <button onClick={this.props.onbacktoTableclick}>Back</button>
+                <button className="backorgobutton" onClick={this.props.onbacktoTableclick}>Back</button>
             </React.Fragment>
           
        );
