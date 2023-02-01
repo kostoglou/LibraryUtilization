@@ -4,13 +4,16 @@
   margin: 0;
   
 }
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
 #body{
-  color: #ececec;
-  font-family: sans-serif;
+  
+  color: #B6EADA;
+  font-family: 'Mitr', sans-serif;
   font-size: 20px;
   text-align: center;
-  background-color: #121720; 
+  background-color: #03001C; 
   margin: 0 ;
   min-height: 100vh;
 
@@ -19,35 +22,48 @@
   'header header header'
   'aside main main'
   'aside main main'
-  'aside footer footer'
-
+  'footer footer footer'
   ;
+
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: auto 1fr auto;
+
 
 }
 
 
 header{
+  font-family: 'Orbitron', sans-serif;
   grid-area: header;
-  background-color: #ac9ea7;
-  padding: 20px;
+  background-color: #03001C;
+  padding: 10px;
 }
 
 aside{
   grid-area: aside;
-  background-color: #654059;
-  padding: 20px;
+  background-color: #5B8FB9;
+  padding: 100px;
+  border-radius: 4em;
+  border: solid #03001C;
+  border-width: 20px 20px 20px 20px;
 }
 
 main{
   grid-area: main;
-  background-color: #680747;
+  background-color: #03001C;
   padding: 20px;
+  border-radius: 4em;
+
+  border: solid #03001C;
+  border-width: 10px 10px 10px 10px;
+
+
 }
 
 footer{
   grid-area: footer;
-  background-color: #e280c1;
-  padding: 20px;
+  background-color: #0a043e;
+  padding: 10px;
 }
 
 
@@ -134,15 +150,34 @@ footer{
 }*/
 
 ul{
-  list-style: none;
-  position: relative;
-  
-  flex-direction: column;
-  gap: 30px;
-  border-radius: 10px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
 }
 
-#listitems {
+ul li a {
+  padding: 20px;
+  display: block;
+  color: #ddd;
+  text-decoration: none;
+  background: #21263E;
+}
+
+ul li ul {
+  display: none;
+}
+
+ul li:hover ul {
+  display: flex;
+  flex-direction: column;
+}
+
+ul li:hover a {
+  color: #fff;
+}
+
+/*#listitems {
     padding: 10px;
     background-color: #142d4c;
     position: relative;
@@ -151,72 +186,100 @@ ul{
     flex-direction: column;
     gap: 30px;
     border-radius: 10px;
-  }
+  }*/
 
-.backorgobutton{
-  position: absolute;
-  border: none;
-  color: #ffffff;
-  width: 5em;
-  height: 3em;
-  line-height: 2em;
-  text-align: center;
-  background: linear-gradient(90deg, #f70776, #8342a4, #af7195, #c3195d);
-  background-size: 300%;
-  border-radius: 10px;
-  text-transform: uppercase;
-  cursor: pointer;
-  z-index: 1;
-}
+
 
 .gobutton{
+  position: relative;
+  background: #7983ff;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  border: none;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+}
+
+.gobutton span {
+  position: relative;
+}
+
+.gobutton::before {
+  --size: 0;
+  content: '';
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  background: radial-gradient(circle closest-side, pink, transparent);
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease;
+}
+
+.gobutton:hover::before {
+  --size: 200px;
+}
+
+
+/*BACK BUTTON*/
+.backbutton{
+  position:relative;
+  width: 200px;
+  height: 60px;
+  background-color: #142d4c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ececec;
+  font-weight: 300;
+  letter-spacing: 2px;
+  padding-left: 2.5em;
+  margin: auto;
+
+  transition: padding 0.5s ease 0s;
   position: absolute;
   border: none;
-  color: #ffffff;
-  width: 5em;
-  height: 3em;
+  width: 10em;
+  height: auto;
   line-height: 2em;
   text-align: center;
-  background: linear-gradient(90deg, #f70776, #8342a4, #af7195, #c3195d);
-  background-size: 300%;
-  border-radius: 10px;
+  overflow: hidden;
+  background-size: 200%;
   text-transform: uppercase;
   cursor: pointer;
   z-index: 1;
 }
 
-.backorgobutton:hover{
-  animation: animation 8s linear infinite;
-  border: none;
-  
+.backbutton:hover{
+  padding-right: 0px;
+  padding-right: 1em;
+  color: #417eda;
+  cursor: pointer;
 }
+
+.backbutton span {
+  position:absolute;
+  width: 50px;
+  height: 50px;
+  left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f3f3f3;
+  font-size: 2em;
+  transition: left .7s ease 0s;
+  justify-content: left;
+
+}
+
 
 @keyframes animation{
   0% {background-position: 0%;}
   100% {background-position: 400%;}
 }
-
-.backorgobutton::before{
-  content: "";
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  z-index: -1;
-  background: linear-gradient(90deg, #f70776, #8342a4, #af7195, #c3195d);
-  background-size: 400%;
-  border-radius: 10px;
-  transition: 1s;
-  
-}
-
-.backorgobutton:hover::before{
-  filter: blur(10px);
-}
-
-
-
 /*.box{
   position: relative;
   width: 300px;
