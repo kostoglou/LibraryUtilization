@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Table from 'rc-table';
 import { HiArrowRightCircle } from 'react-icons/hi2';
+import { MdOutlineArrowBackIosNew } from 'react-icons/md';
+
 
 
 class MyTable extends Component {
@@ -55,10 +57,12 @@ class MyTable extends Component {
         return (
           <React.Fragment>
           
-              <main>
+              <div>
+                <h3 class='GeneralRendering'> 20% </h3>
+                
                 <Table columns={columns} data={this.props.data} />
-                <button className="backorgobutton" onClick={this.props.onbackclick}>Back</button>
-              </main>
+               
+              </div>
                    
           </React.Fragment>
         );

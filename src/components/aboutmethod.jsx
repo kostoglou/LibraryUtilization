@@ -33,9 +33,8 @@ function AboutMethod(){
     
         return ( 
 
-            <div ref={container} style={{ backgroundColor:'#ac9ea7', alignItems:'center', borderRadius:'50px', height: '500px', width: '800px' }} />
-           
-
+            <div class="network" ref={container}  />
+          
          );
     
 }
