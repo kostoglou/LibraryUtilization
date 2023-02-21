@@ -19,11 +19,15 @@ class Welcome extends Component {
         return (
             <React.Fragment>
                 <div >
-                    <input className="input" type="url" id="projectUrl" name="projectUrl" ></input>
-                    <br></br>
-                    <button onMouseMove={ this.handleCursor }
-                      className="gobutton" onClick={this.props.ongoclick}> <span>RESULTS</span> </button>
-                    <div id='waittingAnalysis' class="lds-dual-ring" style={{display:"none"}}></div>
+
+                <div class="Input">
+                    <input type="text" id="input" class="Input-text" placeholder="Enter your project"></input>
+                    <label for="input" class="Input-label">Project URL</label>
+                </div>
+                <button onMouseMove={ this.handleCursor }
+                    className="gobutton" onClick={this.props.ongoclick}> <span>Get Started</span> 
+                </button>
+                <div id='waittingAnalysis' class="lds-dual-ring" style={{display:"none"}}></div>
 
                 </div>
             </React.Fragment>
