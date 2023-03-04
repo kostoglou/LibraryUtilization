@@ -26,20 +26,20 @@ class MyTable extends Component {
             },
             {
               title: 'Metric 1',
-              dataIndex: 'metric1',
-              key: 'metric1',
+              dataIndex: 'Pumc',
+              key: 'Pumc',
               width: 200,
             },
             {
               title: 'Metric 2',
-              dataIndex: 'metric2',
-              key: 'metric2',
+              dataIndex: 'Puc',
+              key: 'Puc',
               width: 200,
             },
             {
               title: 'Metric 3',
-              dataIndex: 'metric3',
-              key: 'metric3',
+              dataIndex: 'Luf',
+              key: 'Luf',
               width: 200,
             },
             {
@@ -57,8 +57,8 @@ class MyTable extends Component {
         return (
           <React.Fragment>
           
-              <div>
-                <h3 class='GeneralRendering'> 20% </h3>
+              <div class="table">
+                <h3 id='metricNul'> {this.props.nul} </h3>
                 
                 <Table columns={columns} data={this.props.data} />
                

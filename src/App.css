@@ -7,6 +7,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Open+Sans&display=swap'); 
 
 #body{
   font-family: 'Mitr', sans-serif;
@@ -36,7 +37,7 @@ aside{
 
 
 header{
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Audiowide', cursive;
   grid-area: header;
   background-color: #03001C;
   padding: 10px;
@@ -147,6 +148,8 @@ footer{
 
 .Input {
   position: relative;
+  margin-right: 350px;
+
   /* generic */
   --gutterSm: 0.4rem;
   --gutterMd: 0.8rem;
@@ -186,7 +189,7 @@ footer{
   display: block;
   margin: 0;
   padding: var(--inputPaddingV) var(--inputPaddingH);
-  color: inherit;
+  color: #7e57c2;
   width: 100%;
   font-family: inherit;
   font-size: var(--inputFontSize);
@@ -198,7 +201,7 @@ footer{
 }
 
 .Input-text::placeholder {
-  color: #B0BEC5;
+  color: #a1bfce;
 }
 
 .Input-text:focus {
@@ -247,6 +250,13 @@ footer{
     z-index 0ms;
 }
 
+/*Table*/
+.table{
+  margin-right: 350px;
+}
+
+
+/*Investigate Button*/
 .investigate{
   position:relative;
   width: 200px;
@@ -390,6 +400,8 @@ ul li:hover a {
   outline: none;
   overflow: hidden;
   margin-top: 10px;
+  margin-right: 350px;
+  border-radius: 0.4rem;
 }
 
 .gobutton span {
@@ -546,6 +558,10 @@ ul li:hover a {
   }
 }
 
+.classesandMethods{
+  margin-right: 200px;
+}
+
 .network {
   background-color:#b6eada4e; 
   align-items:center; 
@@ -673,35 +689,16 @@ ul li:hover a {
   color: #b6eada;
   font-size: 2.5em;
   justify-content: left;
-  animation:  2s linear infinite;
-  -webkit-animation: Color 4s ease-in-out infinite;
-}
-@keyframes Color{
-  0%{
-    color:#A0D468;
-  }
   
-  20%{
-    color:#4FC1E9;
-  }
-  
-  40%{
-    color:#FFCE54;
-  }
-  
-  60%{
-    color:#FC6E51;
-  }
-  
-  80%{
-    color:#ED5565;
-  }
-  
-  100%{
-    color:#AC92EC;
-  }
 }
 
 
 
 
+
+@media screen and (max-width: 500px) {
+  .box{
+    font-size: 20px;
+  }
+
+}

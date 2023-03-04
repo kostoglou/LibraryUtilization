@@ -46,16 +46,17 @@ class DiagramSystemtoApi extends Component  {
 
       return ( 
         <React.Fragment>
-          <div > 
+          <div class="classesandMethods"> 
             <ul id="listwithclasses" onClick={this.onClickaClass}>{listItemsClasses}</ul>
+            
+            <h3 id="selectedClass" /*onChange={handleChange}*/></h3>
+            <ul style={{ display: "flex" }}>{listitemsMethodsOfClasses}</ul>
+            {this.state.showInfoaboutMethod && 
+              <div>
+                <AboutMethod />
+              </div>
+            }
           </div >
-          <h3 id="selectedClass" /*onChange={handleChange}*/></h3>
-          <ul style={{ display: "flex" }}>{listitemsMethodsOfClasses}</ul>
-          {this.state.showInfoaboutMethod && 
-            <div>
-              <AboutMethod />
-            </div>
-          }
         </React.Fragment>   
        );
   }
