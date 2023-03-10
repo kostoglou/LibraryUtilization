@@ -10,7 +10,6 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    //this.state = { dataTable: [] };
   }
 
   state = {
@@ -18,7 +17,8 @@ class App extends Component {
     showWelcome: true,
     showDiagram1: false, 
     nul: "",
-    dataTable : []
+    dataTable : [],
+    dataFirstMethods :[]
   }
 
 
@@ -65,8 +65,11 @@ class App extends Component {
       .then((response) => response.json())
       .then((json) => {
         var obj= JSON.parse(JSON.stringify(json));
+        
+        //NUL metric
         this.setState({nul: "nul: "+obj.nul});
-
+        
+        //Data for the table
         var data=[];
         for (var i=0; i<obj.libraries.length; i++) {
           var libString = obj.libraries[i].name;
@@ -74,16 +77,27 @@ class App extends Component {
           var endWord = "-sources.jar";
           var startIndex = libString.indexOf(startWord) + startWord.length;
           var endIndex = libString.indexOf(endWord);
-
           var lib = libString.substring(startIndex, endIndex);
 
-          data.push({library: lib, Pumc: obj.libraries[i].pumc, 
-                    Puc: obj.libraries[i].puc, Luf: obj.libraries[i].luf});
+          data.push({library: lib, Pumc: obj.libraries[i].pumc.toFixed(3), 
+                    Puc: obj.libraries[i].puc.toFixed(3), Luf: obj.libraries[i].luf.toFixed(3)});
         }
         console.log("data: "+data);
         this.setState({dataTable: data});
-        
-        //this.setState({ dataTable: json });
+      
+        //First methods
+        var firstMethods=[];
+        for (var i=0; i<obj.methodsDetails.length; i++) {
+          var methString = obj.methodsDetails[i].methodName;
+          var startWord = "CloneCommand.";
+          var startIndex = libString.indexOf(startWord) + startWord.length;
+          var lib = methString.substring(startIndex, 0);
+          
+          firstMethods.push({method: methString});
+        }
+        console.log("data Methods: "+firstMethods);
+        this.setState({dataFirstMethods : firstMethods})
+
       })
       .catch((error) => console.error(error));
 
@@ -135,7 +149,7 @@ class App extends Component {
           {this.state.showWelcome && <Welcome ongoclick={this.handleGoClick} />}
           {this.state.showTable && <MyTable onclickoftableoflibrary={this.handleClickofTableofLibrary}
               data={this.state.dataTable} nul={this.state.nul} onbackclick={this.handleBackClick} />}
-          {this.state.showDiagram1 && <DiagramSystemtoApi />}
+          {this.state.showDiagram1 && <DiagramSystemtoApi data={this.state.dataFirstMethods}/>}
         </main>
         
         <footer> </footer>

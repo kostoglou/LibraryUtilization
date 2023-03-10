@@ -5,10 +5,14 @@ import { display } from '@mui/system';
 
 
 class DiagramSystemtoApi extends Component  {
+  constructor(props){
+    super(props);
+  }
+  
   state = {
     showInfoaboutMethod: false,
-    
   }
+  
   onClickListItem  = (e, id) =>{
     console.log(id);
     this.setState({showInfoaboutMethod: true});
@@ -17,7 +21,6 @@ class DiagramSystemtoApi extends Component  {
   /*handleChange = (event) => {
     
   }*/
-  
   
   onClickaClass = (e, id) => {
     
@@ -29,13 +32,15 @@ class DiagramSystemtoApi extends Component  {
 
     render() { 
       const systemClassestoLibrary=[ "class1", "class2", "class3", "class4", "class5", "class6", "class7", "class8", "class9", "class10", "class11"]
-      const methodsofaSystemClass=["method1", "method2", "method3", "method4", "method5"]
+      const methodsofaSystemClass=this.props.data;
+      console.log(methodsofaSystemClass); //data ok
       
       const listitemsMethodsOfClasses = methodsofaSystemClass.map((x)=> 
       <ul id="liswithmethodsofclasses">
         <li key={x} onClick={(event)=> this.onClickListItem(event,x)}><a href="#"> {x}</a></li>
       </ul>
       );
+      console.log("listitemsMethodsOfClasses: "+listitemsMethodsOfClasses); 
       
       const listItemsClasses = systemClassestoLibrary.map((i) =>
       <li  onClick={(event)=>this.onClickaClass(event, i)}> 
