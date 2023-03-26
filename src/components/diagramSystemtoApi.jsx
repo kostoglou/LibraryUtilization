@@ -39,6 +39,10 @@ useEffect(() => {
 
   const onClickListItem  = (e, id, network) =>{
     console.log(id);
+
+    edges.push({ from: 2, to: 3});
+    console.log("edges: " +edges);
+    
    
   }
 
