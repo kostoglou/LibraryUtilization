@@ -19,6 +19,7 @@ class App extends Component {
     nul: "",
     dataTable : [],
     dataFirstMethods :[]
+    
   }
 
 
@@ -92,11 +93,24 @@ class App extends Component {
           var startWord = "CloneCommand.";
           var startIndex = libString.indexOf(startWord) + startWord.length;
           var lib = methString.substring(startIndex, 0);
-          
-          firstMethods.push({method: methString});
+
+          //callgraph
+          var listcallgraph=[];
+          if (obj.methodsDetails[i].methodCallSet.size>0){
+            for ( var j=0; j<obj.methodsDetails[i].methodCallSet[0].methodCalls.length; j++){
+                var qualifiedName = obj.methodsDetails[i].methodCallSet[0].methodCalls[j].qualifiedName;
+                var previousMethodString = obj.methodsDetails[i].methodCallSet[0].methodCalls[j].previousMethodString;
+                listcallgraph.push({qualifiedName: qualifiedName, previousMethodString: previousMethodString});
+            }
+          }
+          firstMethods.push({name:methString, callgraph:listcallgraph});
+
+
         }
         console.log("data Methods: "+firstMethods);
         this.setState({dataFirstMethods : firstMethods})
+
+      
 
       })
       .catch((error) => console.error(error));
