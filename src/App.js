@@ -96,7 +96,7 @@ class App extends Component {
 
           //callgraph
           var listcallgraph=[];
-          if (obj.methodsDetails[i].methodCallSet.size>0){
+          if (obj.methodsDetails[i].methodCallSet.length>0){
             for ( var j=0; j<obj.methodsDetails[i].methodCallSet[0].methodCalls.length; j++){
                 var qualifiedName = obj.methodsDetails[i].methodCallSet[0].methodCalls[j].qualifiedName;
                 var previousMethodString = obj.methodsDetails[i].methodCallSet[0].methodCalls[j].previousMethodString;
