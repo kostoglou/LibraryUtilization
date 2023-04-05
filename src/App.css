@@ -29,7 +29,6 @@
 }
 
 aside{
-  grid-area: aside;
   background-color: #03001C;
   padding: 1px;
   width: 112px;
@@ -342,7 +341,6 @@ ul{
   margin: 0;
   padding: 0;
   list-style-type: none;
-  display: flex;
   
 
 }
@@ -360,7 +358,6 @@ ul li ul {
 }
 
 ul li:hover ul {
-  display: flex;
   flex-direction: column;
 }
 
@@ -692,7 +689,29 @@ ul li:hover a {
   
 }
 
+#liswithmethodsofclasses {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
 
+#liswithmethodsofclasses a {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+#liswithmethodsofclasses a:hover {
+  background-color: #ccc;
+}
+
+#liswithmethodsofclasses a.active {
+  background-color: #04AA6D;
+  color: white;
+}
 
 
 
