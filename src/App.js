@@ -19,7 +19,6 @@ class App extends Component {
     nul: "",
     dataTable : [],
     dataFirstMethods :[]
-    
   }
 
 
@@ -55,7 +54,7 @@ class App extends Component {
     const url = document.getElementById("input").value;
     document.getElementById('waittingAnalysis').style.display='block';
     
-    await fetch("http://localhost:8080/startAnalysisWithMetrics?url="+url, {
+    await fetch("http://195.251.210.147:8083/startAnalysisWithMetrics?url="+url, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -66,51 +65,48 @@ class App extends Component {
       .then((response) => response.json())
       .then((json) => {
         var obj= JSON.parse(JSON.stringify(json));
-        
-        //NUL metric
-        this.setState({nul: "nul: "+obj.nul});
-        
-        //Data for the table
-        var data=[];
-        for (var i=0; i<obj.libraries.length; i++) {
-          var libString = obj.libraries[i].name;
-          var startWord = "dependency\\";
-          var endWord = "-sources.jar";
-          var startIndex = libString.indexOf(startWord) + startWord.length;
-          var endIndex = libString.indexOf(endWord);
-          var lib = libString.substring(startIndex, endIndex);
 
-          data.push({library: lib, Pumc: obj.libraries[i].pumc.toFixed(3), 
-                    Puc: obj.libraries[i].puc.toFixed(3), Luf: obj.libraries[i].luf.toFixed(3)});
-        }
-        console.log("data: "+data);
-        this.setState({dataTable: data});
-      
-        //First methods
-        var firstMethods=[];
-        for (var i=0; i<obj.methodsDetails.length; i++) {
-          var methString = obj.methodsDetails[i].methodName;
-          var startWord = "CloneCommand.";
-          var startIndex = libString.indexOf(startWord) + startWord.length;
-          var lib = methString.substring(startIndex, 0);
+        if(obj.projectModuleDTOS.length==1){
+          this.setState({nul: "nul: "+obj.projectModuleDTOS[0].nul});
+          var data=[];
+          var listDataForLibrary=[];
 
-          //callgraph
-          var listcallgraph=[];
-          if (obj.methodsDetails[i].methodCallSet.length>0){
-            for ( var j=0; j<obj.methodsDetails[i].methodCallSet[0].methodCalls.length; j++){
-                var qualifiedName = obj.methodsDetails[i].methodCallSet[0].methodCalls[j].qualifiedName;
-                var previousMethodString = obj.methodsDetails[i].methodCallSet[0].methodCalls[j].previousMethodString;
-                listcallgraph.push({qualifiedName: qualifiedName, previousMethodString: previousMethodString});
+          for (var i=0; i<obj.projectModuleDTOS[0].libraries.length; i++) {
+            var libString = obj.projectModuleDTOS[0].libraries[i].name;
+            var startWord = "dependency/";
+            var endWord = "-sources.jar";
+            var startIndex = libString.indexOf(startWord) + startWord.length;
+            var endIndex = libString.indexOf(endWord);
+            var lib = libString.substring(startIndex, endIndex);
+
+            data.push({library: lib, pucd: obj.projectModuleDTOS[0].libraries[i].pucd.toFixed(3), 
+              puci: obj.projectModuleDTOS[0].libraries[i].puci.toFixed(3), lduf: obj.projectModuleDTOS[0].libraries[i].lduf.toFixed(3), 
+              liuf: obj.projectModuleDTOS[0].libraries[i].liuf.toFixed(3)});
+              
+            var listprojectModuleDTOS=[];
+            //First methods
+            for(var j=0; j<obj.projectModuleDTOS[0].libraries[i].methodDetailsDTOList.length; j++){
+              var firstmeth = obj.projectModuleDTOS[0].libraries[i].methodDetailsDTOList[j].methodName;
+              firstmeth = firstmeth.substring(0,firstmeth.indexOf("("));
+
+              var listcallgraph=[];
+              //callgraph
+              for ( var k=0; k<obj.projectModuleDTOS[0].libraries[i].methodDetailsDTOList[j].callDTOList.length; k++){
+                var qualifiedName = obj.projectModuleDTOS[0].libraries[i].methodDetailsDTOList[j].callDTOList[k].qualifiedName;
+                var previousMethod = obj.projectModuleDTOS[0].libraries[i].methodDetailsDTOList[j].callDTOList[k].previousMethod;
+                listcallgraph.push({qualifiedName: qualifiedName, previousMethod: previousMethod});
+              }
+            
+              listprojectModuleDTOS.push({firstmeth: firstmeth, listcallgraph: listcallgraph})
             }
-          }
-          firstMethods.push({name:methString, callgraph:listcallgraph});
 
+            listDataForLibrary.push({libraryname: lib, projectModuleDTOS:listprojectModuleDTOS});
+          }
+            
+          this.setState({dataTable: data});
+          this.setState({dataFirstMethods : listDataForLibrary});
 
         }
-        console.log("data Methods: "+firstMethods);
-        this.setState({dataFirstMethods : firstMethods})
-
-      
 
       })
       .catch((error) => console.error(error));
@@ -128,7 +124,8 @@ class App extends Component {
     this.setState({ showDiagram1: false })
   };
 
-  handleClickofTableofLibrary = () => {
+  handleClickofTableofLibrary = (key) => {
+    console.log("key::::: "+key);
     this.setState({ showDiagram1: true });
     this.setState({ showTable: false });
   }
@@ -161,7 +158,7 @@ class App extends Component {
         
         <main>
           {this.state.showWelcome && <Welcome ongoclick={this.handleGoClick} />}
-          {this.state.showTable && <MyTable onclickoftableoflibrary={this.handleClickofTableofLibrary}
+          {this.state.showTable && <MyTable onclickoftableoflibrary={e => this.handleClickofTableofLibrary(e.key)}
               data={this.state.dataTable} nul={this.state.nul} onbackclick={this.handleBackClick} />}
           {this.state.showDiagram1 && <DiagramSystemtoApi data={this.state.dataFirstMethods}/>}
         </main>

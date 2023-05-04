@@ -12,7 +12,7 @@ class MyTable extends Component {
    
     onClick =(key,e)=>{
       console.log("key: "+key);
-    this.props.onclickoftableoflibrary(); 
+      this.props.onclickoftableoflibrary(key); 
      
     }
 
@@ -26,20 +26,26 @@ class MyTable extends Component {
             },
             {
               title: 'Metric 1',
-              dataIndex: 'Pumc',
-              key: 'Pumc',
+              dataIndex: 'pucd',
+              key: 'pucd',
               width: 200,
             },
             {
               title: 'Metric 2',
-              dataIndex: 'Puc',
-              key: 'Puc',
+              dataIndex: 'puci',
+              key: 'puci',
               width: 200,
             },
             {
               title: 'Metric 3',
-              dataIndex: 'Luf',
-              key: 'Luf',
+              dataIndex: 'lduf',
+              key: 'lduf',
+              width: 200,
+            },
+            {
+              title: 'Metric 3',
+              dataIndex: 'liuf',
+              key: 'liuf',
               width: 200,
             },
             {
