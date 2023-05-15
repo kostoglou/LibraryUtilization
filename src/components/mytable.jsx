@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Table from 'rc-table';
 import { HiArrowRightCircle } from 'react-icons/hi2';
-import { MdOutlineArrowBackIosNew } from 'react-icons/md';
 
 
 
@@ -10,7 +9,7 @@ class MyTable extends Component {
     super(props);
   }
    
-    onClick =(key,e)=>{
+    onClick =(key)=>{
       console.log("key: "+key);
       this.props.onclickoftableoflibrary(key); 
      
@@ -25,31 +24,31 @@ class MyTable extends Component {
               width: 200,
             },
             {
-              title: 'Metric 1',
+              title: 'PUCD',
               dataIndex: 'pucd',
               key: 'pucd',
               width: 200,
             },
             {
-              title: 'Metric 2',
+              title: 'PUCI',
               dataIndex: 'puci',
               key: 'puci',
               width: 200,
             },
             {
-              title: 'Metric 3',
+              title: 'LDUF',
               dataIndex: 'lduf',
               key: 'lduf',
               width: 200,
             },
             {
-              title: 'Metric 3',
+              title: 'LIUF',
               dataIndex: 'liuf',
               key: 'liuf',
               width: 200,
             },
             {
-              title: 'Operations',
+              title: 'OPERATIONS',
               dataIndex: '',
               key: 'd',
               render: (text, record) => (

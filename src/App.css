@@ -1,4 +1,5 @@
 * {
+  
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -8,44 +9,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Open+Sans&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&display=swap');
 
-#body{
-  font-family: 'Mitr', sans-serif;
+.body{
+  font-family: 'Chakra Petch', sans-serif;
   color: #B6EADA;
   font-size: 20px;
   text-align: center;
   background-color: #03001C; 
-  margin: 0 ;
+
   min-height: 100vh;
-  display: grid;
-  grid-template-areas:
-  'header header header'
-  'aside main main'
-  'aside main main'
-  'footer footer footer';
-  grid-template-rows: auto 1fr auto;
-  grid-template-columns: repeat(auto-fit, minmax(100px, fr));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
 
 }
 
-aside{
+.asideInfo{
+  background-color: #03001C;
+  padding: 1px;
+  width: 112px;
+  
+}
+
+.asideBack{
   background-color: #03001C;
   padding: 1px;
   width: 112px;
 }
 
 
-header{
+.header{
   font-family: 'Audiowide', cursive;
-  grid-area: header;
   background-color: #03001C;
   padding: 10px;
   font-size: 50px;
   border-radius: 150px;
   border-bottom: 2px solid #CCD1D9;
-  animation: Color 2s linear infinite;
+  animation: Color 30s linear infinite;
   -webkit-animation: Color 4s ease-in-out infinite;
-  text-shadow: 2px 2px #F0F0F0;
+  text-shadow: 1px 1px #F0F0F0;
+  align-self: normal;
 }
 @keyframes Color{
   0%{
@@ -126,28 +132,22 @@ header{
 }
 
 
-main{
-  grid-area: main;
+.main{
   background-color: #03001C;
   padding: 20px;
   border-radius: 4em;
   margin: auto;
-  border: solid #03001C;
-  border-width: 10px 10px 10px 10px;
+  border: 150px;
+  text-align: center;
+ 
 }
 
-footer{
-  grid-area: footer;
-  background-color: #0a043e;
-  padding: 10px;
-}
 
 /*iNPUT URL*/
 
 
 .Input {
   position: relative;
-  margin-right: 350px;
 
   /* generic */
   --gutterSm: 0.4rem;
@@ -251,7 +251,7 @@ footer{
 
 /*Table*/
 .table{
-  margin-right: 350px;
+  padding-right: 80px;
 }
 
 
@@ -325,17 +325,6 @@ footer{
   transform: translate(180px) skew(35deg);
 }
 
-/*.arrow {
-  border: solid black;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
-}
-
-.right {
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-}*/
 
 ul{
   margin: 0;
@@ -374,19 +363,10 @@ ul li:hover a {
 }
 
 
-/*#listitems {
-    padding: 10px;
-    background-color: #142d4c;
-    position: relative;
-    list-style: none;
-    margin: auto;
-    flex-direction: column;
-    gap: 30px;
-    border-radius: 10px;
-  }*/
 
 
 .gobutton{
+  font-family: 'Chakra Petch', sans-serif;
   position: relative;
   background: #7983ff;
   padding: 0.5rem 1rem;
@@ -425,6 +405,7 @@ ul li:hover a {
 
 /*BACK BUTTON*/
 .backbutton{
+  font-family: 'Chakra Petch', sans-serif;
   position:relative;
   width: 200px;
   height: 60px;
@@ -437,11 +418,11 @@ ul li:hover a {
   letter-spacing: 2px;
   padding-left: 2.5em;
   margin: auto;
-
+  border-radius: 1rem;
   transition: padding 0.5s ease 0s;
   position: absolute;
   border: none;
-  width: 10em;
+  width: 8em;
   height: auto;
   line-height: 2em;
   text-align: center;
@@ -479,46 +460,6 @@ ul li:hover a {
   0% {background-position: 0%;}
   100% {background-position: 400%;}
 }
-/*.box{
-  position: relative;
-  width: 300px;
-  height: 200px;
-  border-radius: 20px;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-}
-
-.box::before{
-  content: '';
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  background-image: conic-gradient(transparent, transparent, transparent, #f638dc);
-  animation: rotate 4s linear infinite;
-}
-
-.box::after{
-  content: '';
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  background-image: conic-gradient(transparent, transparent, transparent, #ffb5b5);
-  animation: rotate 4s linear infinite;
-  animation-delay: -2s;
-}
-
-@keyframes rotate {
-  0%{
-    transform: rotate(0deg);
-  }
-  100%{
-    transform: rotate(360deg);
-  }
-  
-}*/
-
-
 
 .App-logo {
   height: 10vmin;
@@ -531,16 +472,6 @@ ul li:hover a {
   }
 }
 
-/*.App-header {
-  background-color:#200f21;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}*/
 
 .App-link {
   color: #61dafb;
@@ -555,9 +486,6 @@ ul li:hover a {
   }
 }
 
-.classesandMethods{
-  margin-right: 200px;
-}
 
 .network {
   background-color:#b6eada4e; 
@@ -694,6 +622,7 @@ ul li:hover a {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  margin: auto;
 }
 
 #liswithmethodsofclasses a {
@@ -711,6 +640,48 @@ ul li:hover a {
 #liswithmethodsofclasses a.active {
   background-color: #04AA6D;
   color: white;
+}
+
+
+/**
+Slider
+**/
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #04AA6D;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #04AA6D;
+  cursor: pointer;
 }
 
 
