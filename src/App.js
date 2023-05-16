@@ -22,13 +22,6 @@ class App extends Component {
     selectedLibrary: ""
   }
 
-
-  data2 = [
-    { systemclass: "Class 1", firstmethod: "Method 1" },
-    { systemclass: "Class 2", firstmethod: "Method 2" },
-    { systemclass: "Class 3", firstmethod: "Method 1" },
-  ]
-
   onbackclickAll = () => {
     if (this.state.showTable == true) {
       this.handleBackClick();
@@ -55,7 +48,7 @@ class App extends Component {
     const url = document.getElementById("input").value;
     document.getElementById('waittingAnalysis').style.display='block';
     
-    await fetch("http://195.251.210.147:8083/startAnalysisWithMetrics?url="+url, {
+    await fetch("http://195.251.210.147:8083/startAnalysisWithMetricsForOneProjectVersion?url="+url, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -122,15 +115,12 @@ class App extends Component {
 
             listDataForLibrary.push({libraryname: lib, projectModuleDTOS:listprojectModuleDTOS});
           }
-            
           this.setState({dataTable: data});
           this.setState({dataFirstMethods : listDataForLibrary});
-
         }
 
       })
       .catch((error) => console.error(error));
-
 
       this.setState({ showTable: true });
       this.setState({ showWelcome: false });

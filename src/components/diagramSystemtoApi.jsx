@@ -1,19 +1,21 @@
 import React, { useState, useRef } from 'react';
 import { Network } from 'vis-network';
 
-
 function DiagramSystemtoApi(props)  {
+
+  const [value, setValue] = useState(300);
+
   var container = useRef(null);
       
   const onClickListItem  = (e, callgraph, first) =>{
-    createGraph(callgraph,first,100);
+    createGraph(callgraph,first,value);
   }
 
   function createGraph(callgraph,first,maxNodes){
     var nodes = [];
     var edges = [];
     console.log("meth: "+first);
-
+    
     var flagstop = false;
     var A = [first];
     var B = [];
@@ -76,19 +78,18 @@ function DiagramSystemtoApi(props)  {
       var network = new Network(container, data, options);
   }
 
-  const rangeChanged= ()=>{
-    var value = document.getElementById('myRange').value;
-    document.getElementById('sliderValue').innerHTML = value; 
+  /*const changetheCallgraph=()=>{
+    console.log(value);
+    console.log(firstMethod);
 
-  }
+   // createGraph(callGraph,firstMethod,value)
+  }*/
 
-  const onClickaClass = (e, id) => {
-      
-    document.getElementById('selectedClass').setNativeValue = "200";
-    console.log(id);
-    document.getElementById("liswithmethodsofclasses").style.display = "flex";
-    document.getElementById("listwithclasses").style.width = "100px";
-  } 
+  const handleChange = (event) => {
+    console.log(value);
+    setValue(event.target.value);
+    
+  };
     
   const libname = props.libname;
   console.log("libname::: " +libname); 
@@ -98,10 +99,12 @@ function DiagramSystemtoApi(props)  {
       methodsofaSystemClass= props.data[i].projectModuleDTOS;
     }
   }
+  const firstMethod = methodsofaSystemClass.firstmeth;
+  const callGraph = methodsofaSystemClass.callgraph;
         
   const listitemsMethodsOfClasses = methodsofaSystemClass.map((x)=> 
     <li>
-    <div key={x.firstmeth} onClick={(event)=>onClickListItem(event, x.listcallgraph, x.firstmeth)}><a href="#"> {x.firstmeth}</a></div>
+    <div key={x.firstmeth} onClick={(event)=>onClickListItem(event, x.listcallgraph, x.firstmeth)} ><a href="#"> {x.firstmeth}</a></div>
     </li>
   );
         
@@ -114,18 +117,20 @@ function DiagramSystemtoApi(props)  {
   return ( 
     <React.Fragment>
       <div class="classesandMethods"> 
-        {/* <ul id="listwithclasses" onClick={onClickaClass} style={{ display: "block" }}>{listItemsClasses}</ul> */}
+        
             
         <h3 id="selectedClass" /*onChange={handleChange}*/></h3>
         <ul id="liswithmethodsofclasses" style={{ display: "flex" }}>{listitemsMethodsOfClasses}</ul>
 
         <div id="GraphDiv" style={{display:"none"}}>
           <div id="aboutMethodDiv" style={{height: "500px"}}></div>
+          <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
           <div class="slidecontainer">
-            <input type="range" min="1" max="900" value="100" class="slider" id="myRange" onInput={()=>this.rangeChanged()} onDrag={}/>
-            <p>Value: <span id="sliderValue"></span></p>
+            <input type="range" min="1" max="900" value={value} class="slider" id="myRange" defaultValue="3" step="1" onChange={handleChange} />
+            <p>Value: {value}</p>
           </div>
-          <button onc></button>
+          
+        
         </div>
               
       </div >
