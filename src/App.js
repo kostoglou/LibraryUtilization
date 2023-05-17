@@ -1,6 +1,7 @@
 import './App.css';
 import React, { Component } from 'react'
 import Welcome from './components/welcome';
+import HistoryAnalysis from './components/historyAnalysis';
 import MyTable from './components/mytable';
 import DiagramSystemtoApi from './components/diagramSystemtoApi';
 import { MdOutlineArrowBackIosNew } from 'react-icons/md';
@@ -15,6 +16,7 @@ class App extends Component {
   state = {
     showTable: false,
     showWelcome: true,
+    showHistoryAnalysis: false,
     showDiagram1: false, 
     nul: "",
     dataTable : [],
@@ -128,6 +130,15 @@ class App extends Component {
       document.getElementById("waittingAnalysis").style.display = "block";      
     }
 
+  handleHistoryClick = () => {
+    console.log("ok");
+    this.setState({ showWelcome: false });
+    this.setState({ showHistoryAnalysis: true });
+    //return (<HistoryAnalysis/>);
+    
+
+  }
+
   handleBackClick = () => {
     this.setState({ showWelcome: true });
     this.setState({ showTable: false });
@@ -169,7 +180,8 @@ class App extends Component {
         
         
         <main class="main">
-          {this.state.showWelcome && <Welcome ongoclick={this.handleGoClick} />}
+          {this.state.showWelcome && <Welcome ongoclick={this.handleGoClick} onHistoryclick={this.handleHistoryClick}/>}
+          {this.state.showHistoryAnalysis && <HistoryAnalysis/>}
           {this.state.showTable && <MyTable onclickoftableoflibrary={this.handleClickofTableofLibrary}
               data={this.state.dataTable} nul={this.state.nul} onbackclick={this.handleBackClick} />}
           {this.state.showDiagram1 && <DiagramSystemtoApi data={this.state.dataFirstMethods} libname={this.state.selectedLibrary}/>}

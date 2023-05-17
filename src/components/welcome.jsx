@@ -27,8 +27,8 @@ class Welcome extends Component {
                 <button onMouseMove={ this.handleCursor }
                     className="gobutton" onClick={this.props.ongoclick}> <span>Get Started</span> 
                 </button>
-                <button 
-                    className="gobutton" > <span>Start Analysis</span> 
+                <button onMouseMove={ this.handleCursor }
+                    className="gobutton" onClick={this.props.onHistoryclick}> <span>Start Analysis</span> 
                 </button>
                 <div id='waittingAnalysis' class="lds-dual-ring" style={{display:"none"}}></div>
 
