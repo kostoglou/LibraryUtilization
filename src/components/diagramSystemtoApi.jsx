@@ -4,10 +4,14 @@ import { Network } from 'vis-network';
 function DiagramSystemtoApi(props)  {
 
   const [value, setValue] = useState(300);
+  const [firstMethod, setFirstMethod] = useState("");
+  const [callGraph, setCallGraph] = useState("");
 
   var container = useRef(null);
       
   const onClickListItem  = (e, callgraph, first) =>{
+    setFirstMethod(first);
+    setCallGraph(callgraph);
     createGraph(callgraph,first,value);
   }
 
@@ -65,8 +69,8 @@ function DiagramSystemtoApi(props)  {
           improvedLayout: false,
           hierarchical: {
             enabled: true,
-            levelSeparation: 500,
-            nodeSpacing: 500,
+            //levelSeparation: 500,
+            nodeSpacing: 200,
             treeSpacing: 200,
             blockShifting: false,
             edgeMinimization: true,
@@ -90,6 +94,15 @@ function DiagramSystemtoApi(props)  {
     setValue(event.target.value);
     
   };
+
+  const handleDrop = (event) => {
+    console.log("Drop!!");
+    createGraph(callGraph,firstMethod,value);
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
     
   const libname = props.libname;
   console.log("libname::: " +libname); 
@@ -99,8 +112,7 @@ function DiagramSystemtoApi(props)  {
       methodsofaSystemClass= props.data[i].projectModuleDTOS;
     }
   }
-  const firstMethod = methodsofaSystemClass.firstmeth;
-  const callGraph = methodsofaSystemClass.callgraph;
+
         
   const listitemsMethodsOfClasses = methodsofaSystemClass.map((x)=> 
     <li>
@@ -126,7 +138,8 @@ function DiagramSystemtoApi(props)  {
           <div id="aboutMethodDiv" style={{height: "500px"}}></div>
           <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
           <div class="slidecontainer">
-            <input type="range" min="1" max="900" value={value} class="slider" id="myRange" defaultValue="3" step="1" onChange={handleChange} />
+            <input type="range" min="1" max="900" value={value} class="slider" id="myRange" defaultValue="3" step="1" onChange={handleChange} 
+                  onDragOver={handleDragOver} onDrop={handleDrop}/>
             <p>Value: {value}</p>
           </div>
           

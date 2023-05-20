@@ -142,9 +142,33 @@
  
 }
 
+.welcomeFlex{
+  display: flex;
+  flex-direction: column;
+}
+
+.item2{
+  display: flex;
+  flex-direction: row;
+  padding-top: 30px;
+}
+.item21{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.item22{
+  display: flex;
+  flex-direction: column;
+}
+
+#input2{
+  height: 50px;
+  width: 250px;
+}
 
 /*iNPUT URL*/
-
 
 .Input {
   position: relative;
@@ -185,7 +209,7 @@
 }
 
 .Input-text {
-  display: block;
+  display: flex;
   margin: 0;
   padding: var(--inputPaddingV) var(--inputPaddingH);
   color: #7e57c2;
@@ -209,7 +233,7 @@
 }
 
 .Input-label {
-  display: block;
+  display: flex;
   position: absolute;
   bottom: 50%;
   left: 1rem;
@@ -336,7 +360,7 @@ ul{
 
 ul li a {
   padding: 20px;
-  display: block;
+  display: flex;
   color: #ddd;
   text-decoration: none;
   background: #21263E;
@@ -628,7 +652,7 @@ ul li:hover a {
 #liswithmethodsofclasses a {
   background-color: #eee;
   color: black;
-  display: block;
+  display: flex;
   padding: 12px;
   text-decoration: none;
 }

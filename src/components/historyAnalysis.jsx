@@ -19,7 +19,44 @@ class HistoryAnalysis extends Component {
 
     state = {  }
 
+    test = () => {
+      const com = this.props.comm;
+      console.log("commits: " + com);
+    }
+
     render() {
+        var commitsLi=['name'];
+        var uniqueLibs=[];
+        var libsSha=[];
+        var sha="";
+        for(var i=0;i<this.props.comm; i++){
+          var v=i+1;
+          commitsLi.push('v'+v);
+          var lib="";
+          sha = this.props.comm.sha;
+          for(var j=0;j<this.props.data[i].dataProjectVersion;j++){
+            lib = this.props.data[i].dataProjectVersion[j].lib;
+            if(!uniqueLibs.includes(lib)){
+              uniqueLibs.push(lib);
+            }
+            libsSha.push({sha: sha, lib: lib});
+          }
+        }
+        
+        var yesNoTableLibs=[];
+        var shaYes=[];
+        for(var i=0; i<uniqueLibs; i++){
+          for(var j=0; j<libsSha; j++){
+            var l = libsSha[j].lib;
+            var s = libsSha[j].sha;
+            if(uniqueLibs[i]==l){
+              shaYes.push(s);
+            }
+          }
+          yesNoTableLibs.push(uniqueLibs[i], ...shaYes);
+        }
+
+
         //first chart
         const data = [
             {
@@ -65,41 +102,14 @@ class HistoryAnalysis extends Component {
               amt: 2100
             }
           ];
-
-        //table
-        const columns = [
-            {
-              title: 'Library',
-              dataIndex: 'library',
-              key: 'library',
-              width: 100,
-            },
-            {
-              title: 'Age',
-              dataIndex: 'age',
-              key: 'age',
-              width: 100,
-            },
-            {
-              title: 'Address',
-              dataIndex: 'address',
-              key: 'address',
-              width: 200,
-            },
-            {
-              title: 'Operations',
-              dataIndex: '',
-              key: 'operations',
-              render: () => <a href="#">Library</a>,
-            },
-          ];
-          const data2 = [
-            { name: 'Jack', age: 28, address: 'some where', key: '1' },
-            { name: 'Rose', age: 36, address: 'some where', key: '2' },
-          ];
+          
 
         return (
             <React.Fragment>    
+
+
+
+              <button onClick={this.test}> button</button>
 
                 <LineChart
                 width={500}
@@ -126,7 +136,22 @@ class HistoryAnalysis extends Component {
                 <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
                 </LineChart>
 
-                <Table columns={columns} data={data2} />
+                <table>
+                  <thead>
+                    <tr>
+                      {commitsLi.map((x) => (
+                        <th key={x}>{x}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {yesNoTableLibs.map((row, index) => (
+                      <tr key={row}>{row.map((x) => (
+                          <td key={x}>{row[x]}</td> ))}
+                      </tr>
+                    ))} 
+                  </tbody>
+                </table>
             </React.Fragment>
 
         );

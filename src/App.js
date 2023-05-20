@@ -17,11 +17,13 @@ class App extends Component {
     showTable: false,
     showWelcome: true,
     showHistoryAnalysis: false,
+    commitsforhistory: 2,
     showDiagram1: false, 
     nul: "",
     dataTable : [],
     dataFirstMethods :[],
-    selectedLibrary: ""
+    selectedLibrary: "",
+    dataProject: []
   }
 
   onbackclickAll = () => {
@@ -47,10 +49,10 @@ class App extends Component {
   }
 
   handleGoClick = async () => {
-    const url = document.getElementById("input").value;
+    const url = document.getElementById("input1").value;
     document.getElementById('waittingAnalysis').style.display='block';
     
-    await fetch("http://195.251.210.147:8083/startAnalysisWithMetricsForOneProjectVersion?url="+url, {
+    await fetch("http://195.251.210.147:8089/startAnalysisWithMetricsForOneProjectVersion?url="+url, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -130,14 +132,76 @@ class App extends Component {
       document.getElementById("waittingAnalysis").style.display = "block";      
     }
 
-  handleHistoryClick = () => {
-    console.log("ok");
-    this.setState({ showWelcome: false });
-    this.setState({ showHistoryAnalysis: true });
-    //return (<HistoryAnalysis/>);
-    
+  handleHistoryClick = async () => {
+    const url = document.getElementById("input1").value;
+    const commits = document.getElementById("input2").value;
+    this.setState({ commitsforhistory: commits });
 
+    await fetch("http://195.251.210.147:8089/startHistoryAnalysis?url="+url+"&numberOfCommits="+commits, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': "*",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+
+        var dataProject = [];
+        var obj= JSON.parse(JSON.stringify(json));
+        for(var k=0; k<obj.length; k++){
+
+          var sha = obj[k].sha;
+
+          if(obj[k].projectModuleDTOS.length==1){
+            this.setState({nul: "nul: "+obj[k].projectModuleDTOS[0].nul});
+            
+            var dataProjectVersion = [];
+
+            for (var i=0; i<obj[k].projectModuleDTOS[0].libraries.length; i++) {
+              var libString = obj[k].projectModuleDTOS[0].libraries[i].name;
+              var startWord = "dependency/";
+              var endWord = "-sources.jar";
+              var startIndex = libString.indexOf(startWord) + startWord.length;
+              var endIndex = libString.indexOf(endWord);
+              var lib = libString.substring(startIndex, endIndex);
+
+              var pucd= obj[k].projectModuleDTOS[0].libraries[i].pucd;
+              if(pucd=="NaN"){
+                pucd=0;
+              }
+              var puci= obj[k].projectModuleDTOS[0].libraries[i].puci;
+              if(puci=="NaN"){
+                puci=0;
+              }
+              var lduf= obj[k].projectModuleDTOS[0].libraries[i].lduf;
+              if(lduf=="NaN"){
+                lduf=0;
+              }
+              var liuf= obj[k].projectModuleDTOS[0].libraries[i].liuf;
+              if(liuf=="NaN"){
+                liuf=0;
+              }
+              dataProjectVersion.push({library: lib, pucd: pucd.toFixed(3), 
+                puci: puci.toFixed(3), lduf: lduf.toFixed(3), liuf: liuf.toFixed(3)});
+            }
+
+            dataProject.push({sha: sha, dataProjectVersion: dataProjectVersion});
+          
+          }
+        }
+        dataProject= dataProject.reverse();
+        this.setState({dataProject: dataProject});
+
+        console.log("ok");
+        this.setState({ showWelcome: false });
+        this.setState({ showHistoryAnalysis: true });
+      })
+      .catch((error) => console.error(error));
+      
   }
+  
 
   handleBackClick = () => {
     this.setState({ showWelcome: true });
@@ -181,7 +245,7 @@ class App extends Component {
         
         <main class="main">
           {this.state.showWelcome && <Welcome ongoclick={this.handleGoClick} onHistoryclick={this.handleHistoryClick}/>}
-          {this.state.showHistoryAnalysis && <HistoryAnalysis/>}
+          {this.state.showHistoryAnalysis && <HistoryAnalysis data={this.state.dataProject} comm={this.state.commitsforhistory}/>}
           {this.state.showTable && <MyTable onclickoftableoflibrary={this.handleClickofTableofLibrary}
               data={this.state.dataTable} nul={this.state.nul} onbackclick={this.handleBackClick} />}
           {this.state.showDiagram1 && <DiagramSystemtoApi data={this.state.dataFirstMethods} libname={this.state.selectedLibrary}/>}
