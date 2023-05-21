@@ -7,12 +7,18 @@ class Welcome extends Component {
       }
 
       handleCursor = (e) => {
-        const cursor = document.getElementsByClassName('gobutton')[0];     
+        const cursor1 = document.getElementsByClassName('gobutton')[0];
+        const cursor2 = document.getElementsByClassName('gobutton')[1];
+        const cursor3 = document.getElementsByClassName('historybutton')[0];
         let rect = e.target.getBoundingClientRect();
         let x = e.clientX - rect.left;
         let y = e.clientY - rect.top;
-        cursor.style.setProperty('--x', x + 'px');
-        cursor.style.setProperty('--y', y + 'px');
+        cursor1.style.setProperty('--x', x + 'px');
+        cursor1.style.setProperty('--y', y + 'px');
+        cursor2.style.setProperty('--x', x + 'px');
+        cursor2.style.setProperty('--y', y + 'px');
+        cursor3.style.setProperty('--x', x + 'px');
+        cursor3.style.setProperty('--y', y + 'px');
     }
 
     render() { 
@@ -36,10 +42,12 @@ class Welcome extends Component {
                             </button>
                         </div>
                         <div class="item22">
-                            <input type="text" id="input2" class="Input-text" placeholder="Enter number of commits"></input>
-                            <label for="input2" class="Input-label">Commits</label>
+                            <div class="InputCom">
+                                <input type="text" id="input2" class="InputCom-text" placeholder="Commits"></input>
+                                <label for="input2" class="InputCom-label">Commits</label>
+                            </div>
                             <button onMouseMove={ this.handleCursor }
-                                className="gobutton" onClick={this.props.onHistoryclick}> <span>History Analisis</span> 
+                                className="historybutton" onClick={this.props.onHistoryclick}> <span>History Analisis</span> 
                             </button>
                         </div>
                     </div>

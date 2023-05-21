@@ -36,6 +36,11 @@ class App extends Component {
       this.handleBacktoTableClick();
       document.getElementById("backButtonAllId").style.display="flex";
     }
+
+    if(this.state.showHistoryAnalysis==true){
+      this.handleBackClick();
+      document.getElementById("backButtonAllId").style.display = "none";
+    }
   }
 
   handleonMouseEnterInformation = () => {
@@ -153,6 +158,8 @@ class App extends Component {
         for(var k=0; k<obj.length; k++){
 
           var sha = obj[k].sha;
+          var nul = obj[k].projectModuleDTOS[0].nul;
+          
 
           if(obj[k].projectModuleDTOS.length==1){
             this.setState({nul: "nul: "+obj[k].projectModuleDTOS[0].nul});
@@ -187,13 +194,14 @@ class App extends Component {
                 puci: puci.toFixed(3), lduf: lduf.toFixed(3), liuf: liuf.toFixed(3)});
             }
 
-            dataProject.push({sha: sha, dataProjectVersion: dataProjectVersion});
+            dataProject.push({sha: sha, nul: nul, dataProjectVersion: dataProjectVersion});
           
           }
         }
         dataProject= dataProject.reverse();
         this.setState({dataProject: dataProject});
-
+        
+        document.getElementById("backButtonAllId").style.display = "flex";
         console.log("ok");
         this.setState({ showWelcome: false });
         this.setState({ showHistoryAnalysis: true });
@@ -206,7 +214,8 @@ class App extends Component {
   handleBackClick = () => {
     this.setState({ showWelcome: true });
     this.setState({ showTable: false });
-    this.setState({ showDiagram1: false })
+    this.setState({ showDiagram1: false });
+    this.setState({showHistoryAnalysis: false});
   };
 
   handleClickofTableofLibrary=(key) => {
@@ -240,12 +249,11 @@ class App extends Component {
           </div>
         </aside>
         <aside class="asideBack"><button id="backButtonAllId" className="backbutton" onClick={this.onbackclickAll} style={{ display: "none" }} >BACK <span><MdOutlineArrowBackIosNew /></span></button></aside>
-
         
         
         <main class="main">
           {this.state.showWelcome && <Welcome ongoclick={this.handleGoClick} onHistoryclick={this.handleHistoryClick}/>}
-          {this.state.showHistoryAnalysis && <HistoryAnalysis data={this.state.dataProject} comm={this.state.commitsforhistory}/>}
+          {this.state.showHistoryAnalysis && <HistoryAnalysis data={this.state.dataProject} comm={this.state.commitsforhistory} />}
           {this.state.showTable && <MyTable onclickoftableoflibrary={this.handleClickofTableofLibrary}
               data={this.state.dataTable} nul={this.state.nul} onbackclick={this.handleBackClick} />}
           {this.state.showDiagram1 && <DiagramSystemtoApi data={this.state.dataFirstMethods} libname={this.state.selectedLibrary}/>}
