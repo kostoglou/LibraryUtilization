@@ -5,7 +5,7 @@ import HistoryAnalysis from './components/historyAnalysis';
 import MyTable from './components/mytable';
 import DiagramSystemtoApi from './components/diagramSystemtoApi';
 import { MdOutlineArrowBackIosNew } from 'react-icons/md';
-import {TiInfoLargeOutline} from 'react-icons/ti';
+import {ImInfo} from 'react-icons/im';
 
 class App extends Component {
 
@@ -134,10 +134,10 @@ class App extends Component {
       this.setState({ showTable: true });
       this.setState({ showWelcome: false });
       document.getElementById("backButtonAllId").style.display = "flex";
-      document.getElementById("waittingAnalysis").style.display = "block";      
     }
 
   handleHistoryClick = async () => {
+    document.getElementById('waittingAnalysis').style.display='block';
     const url = document.getElementById("input1").value;
     const commits = document.getElementById("input2").value;
     this.setState({ commitsforhistory: commits });
@@ -241,7 +241,7 @@ class App extends Component {
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
           <div class="sti_container" onMouseEnter={this.handleonMouseEnterInformation} onMouseLeave={this.handleonMouseLeaveInformation} >
             <button class="btn" >
-              <span id="buttonIcon" class="btn-icon" ><TiInfoLargeOutline/></span>
+              <span id="buttonIcon" class="btn-icon" ><ImInfo/></span>
               <p id="infoText" class="btn-text" style={{ display: "none" }} > <h2>Why Library Utilazation?</h2><h4>because...</h4>
                                                                               <h2>About the Metrics</h2><h4>The Metrics...</h4>
                                                                               <h2>How to use the app?</h2><h4>the way of use is...</h4></p>

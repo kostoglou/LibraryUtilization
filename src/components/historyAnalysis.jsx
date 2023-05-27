@@ -8,6 +8,8 @@ import {
     Tooltip,
     Legend
   } from "recharts";
+import Table from 'rc-table';
+import { HiArrowRightCircle } from 'react-icons/hi2';
 
 class HistoryAnalysis extends Component {
 
@@ -22,6 +24,10 @@ class HistoryAnalysis extends Component {
       console.log("commits: " + com);
     }
 
+    onClick =(key)=>{
+      console.log("key: " + key );
+    }
+
     render() {
       //commits
       var commitsLi=['name'];
@@ -32,33 +38,73 @@ class HistoryAnalysis extends Component {
         commitsLi2.push('Commit: '+v);
       }
 
+      //Table
+      //headers
+      const headers = [ {
+        title: 'Library',
+        dataIndex: 'library',
+        key: 'library',
+        width: 250
+      }];
+      for(var i=0;i<this.props.comm; i++){
+        var v=i+1;
+        headers.push( {title:'v '+v, dataIndex:'v'+v, key:'v'+v, width:100} );
+      }
+      headers.push(
+        {
+          title: 'OPERATIONS',
+          dataIndex: '',
+          key: 'd',
+          render: (text, record) => (
+            <div syle={{height: '40px', lineHeight: '40px', display: 'flex'}}>
+              <button className='investigate' onClick={e =>this.onClick(record.library, e)} href="#">
+                more <span><HiArrowRightCircle /></span>
+              </button>
+            </div>
+          )
+        }
+      );
+
+      //organize data
+      var dataTable =[];
       var uniqueLibs=[];
       var libsSha=[];
       var sha="";
+      var version=0;
       for(var i=0; i<this.props.data.length; i++){
         var lib="";
         sha = this.props.data[i].sha;
+        version++;
         for(var j=0;j<this.props.data[i].dataProjectVersion.length;j++){
-          lib = this.props.data[i].dataProjectVersion[j].lib;
+          lib = this.props.data[i].dataProjectVersion[j].library;
           if(!uniqueLibs.includes(lib)){
             uniqueLibs.push(lib);
           }
-          libsSha.push({sha: sha, lib: lib});
+          libsSha.push({v: "v"+version, lib: lib});
         }
-      }
-      var yesNoTableLibs=[];
-      var shaYes=[];
-      for(var i=0; i<uniqueLibs.length; i++){
-        for(var j=0; j<libsSha.length; j++){
-          var l = libsSha[j].lib;
-          var s = libsSha[j].sha;
-          if(uniqueLibs[i]==l){
-            shaYes.push(s);            
-          }
-        }
-        yesNoTableLibs.push(uniqueLibs[i], ...shaYes);
       }
 
+      //Table data
+      for(var k=0; k<uniqueLibs.length; k++){
+        var object={library: uniqueLibs[k]};
+        for (var i=1; i<=this.props.comm; i++){
+          var foundInThisCommit =false;
+          for(var k2=0; k2<libsSha.length; k2++){
+            if(libsSha[k2].lib==uniqueLibs[k] && libsSha[k2].v=="v"+i){
+              var key1 = "v"+i;
+              object[key1]=<i className='fa fa-check' aria-hidden='true'></i>;
+              foundInThisCommit=true;
+            }
+          }
+          if(!foundInThisCommit){
+            var key1 = "v"+i;
+            object[key1]= <i className='fa fa-times' aria-hidden='true'></i>;
+          }
+        }
+
+        dataTable.push( object );
+
+      }
 
       //first chart
       const dataFirstChart = [];
@@ -68,6 +114,8 @@ class HistoryAnalysis extends Component {
       }
       var data = [];
       data = dataFirstChart;
+
+
 
       return (
         <React.Fragment>    
@@ -98,24 +146,9 @@ class HistoryAnalysis extends Component {
           />
           </LineChart>
 
-              <table>
-                <thead>
-                  <tr>
-                     {commitsLi.map((x) => (
-                      <th key={x}>{x}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                    {/* {yesNoTableLibs.map((row, index) => (
-                      <tr key={index}>
-                        {commitsLi.map((x) => (
-                          <td key={x}>{row[x]}</td>
-                        ))}
-                      </tr>
-                    ))} */}
-                </tbody>
-              </table>
+            <div id="my-table">
+              <Table columns={headers} data={dataTable}/>
+            </div>
           </React.Fragment>
 
         );

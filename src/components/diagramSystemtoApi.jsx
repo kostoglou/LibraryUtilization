@@ -29,14 +29,16 @@ function DiagramSystemtoApi(props)  {
           if(A[0]==callgraph[i].previousMethod){
             A.push(callgraph[i].qualifiedName);
             B.push({from: callgraph[i].previousMethod, to: callgraph[i].qualifiedName});
+            var classAndMethod = callgraph[i].previousMethod.split(".")[callgraph[i].previousMethod.split(".").length-2] 
+                                +"."+callgraph[i].previousMethod.split(".")[callgraph[i].previousMethod.split(".").length-1] ;
             if(!nodes.some(e => e.id === callgraph[i].previousMethod) && callgraph[i].previousMethod != first){
-              nodes.push({id: callgraph[i].previousMethod, label: callgraph[i].previousMethod});
+              nodes.push({id: callgraph[i].previousMethod, label: classAndMethod});
             }
             else if(!nodes.some(e => e.id === callgraph[i].previousMethod) && callgraph[i].previousMethod == first){
-              nodes.push({id: callgraph[i].previousMethod, label: callgraph[i].previousMethod, color: { border: "#FF0000" }});
+              nodes.push({id: callgraph[i].previousMethod, label: classAndMethod, color: { border: "#FF0000" }});
             }
             if(!nodes.some(e => e.id === callgraph[i].qualifiedName)){
-              nodes.push({id: callgraph[i].qualifiedName, label: callgraph[i].qualifiedName});
+              nodes.push({id: callgraph[i].qualifiedName, label: classAndMethod});
             }
           }
         }
@@ -58,6 +60,7 @@ function DiagramSystemtoApi(props)  {
         edges: edges,
       };
       var options = {
+        interaction:{hover:true},
         physics: false,
         autoResize: true,
         height: '100%',
@@ -98,11 +101,9 @@ function DiagramSystemtoApi(props)  {
   const handleDrop = (event) => {
     console.log("Drop!!");
     createGraph(callGraph,firstMethod,value);
+    
   };
 
-  const handleDragOver = (event) => {
-    event.preventDefault();
-  };
     
   const libname = props.libname;
   console.log("libname::: " +libname); 
@@ -139,7 +140,7 @@ function DiagramSystemtoApi(props)  {
           <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
           <div class="slidecontainer">
             <input type="range" min="1" max="900" value={value} class="slider" id="myRange" defaultValue="3" step="1" onChange={handleChange} 
-                  onDragOver={handleDragOver} onDrop={handleDrop}/>
+                  onMouseUp={handleDrop}/>
             <p>Value: {value}</p>
           </div>
           

@@ -52,7 +52,7 @@ class Welcome extends Component {
                         </div>
                     </div>
                         
-                        <div id='waittingAnalysis' class="lds-dual-ring" style={{display:"none"}}></div>
+                    <div id='waittingAnalysis' class="lds-roller" style={{display:"none"}}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 
                 </div>
             </React.Fragment>
