@@ -10,13 +10,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Open+Sans&display=swap'); 
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&family=Libre+Franklin:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Moonrocks&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@500&display=swap');
 
 .body{
-  font-family: 'Chakra Petch', sans-serif;
-  color: #B6EADA;
+  font-family: 'Kumbh Sans', sans-serif;  
+  color: #ffffff;
   font-size: 20px;
   text-align: center;
-  background-color: #03001C; 
+  background-color: #a7a7a7; 
 
   min-height: 100vh;
   display: flex;
@@ -28,112 +31,33 @@
 }
 
 .asideInfo{
-  background-color: #03001C;
+  background-color: #a7a7a7;
   padding: 1px;
   width: 112px;
   
 }
 
 .asideBack{
-  background-color: #03001C;
+  background-color: #a7a7a7;
   padding: 1px;
   width: 112px;
 }
 
 
 .header{
-  font-family: 'Audiowide', cursive;
-  background-color: #03001C;
+  font-family: 'Rubik Moonrocks', cursive;  
+  background-color: #060612;
+  letter-spacing: 3px;
   padding: 10px;
   font-size: 50px;
-  border-radius: 150px;
-  animation: Color 30s linear infinite;
-  -webkit-animation: Color 4s ease-in-out infinite;
-  text-shadow: 1px 1px #F0F0F0;
+  text-shadow: 1px 1px #a7a7a7;
   align-self: normal;
   padding-top: 20px;
-}
-@keyframes Color{
-  0%{
-    color:#A0D468;
-  }
-  
-  20%{
-    color:#4FC1E9;
-  }
-  
-  40%{
-    color:#FFCE54;
-  }
-  
-  60%{
-    color:#FC6E51;
-  }
-  
-  80%{
-    color:#ED5565;
-  }
-  
-  100%{
-    color:#AC92EC;
-  }
-}
-
-@-moz-keyframes Color{
-  0%{
-    color:#A0D468;
-  }
-  
-  20%{
-    color:#4FC1E9;
-  }
-  
-  40%{
-    color:#FFCE54;
-  }
-  
-  60%{
-    color:#FC6E51;
-  }
-  
-  80%{
-    color:#ED5565;
-  }
-  
-  100%{
-    color:#AC92EC;
-  }
-}
-
-@-webkit-keyframes Color{
-  0%{
-    color:#A0D468;
-  }
-  
-  20%{
-    color:#4FC1E9;
-  }
-  
-  40%{
-    color:#FFCE54;
-  }
-  
-  60%{
-    color:#FC6E51;
-  }
-  
-  80%{
-    color:#ED5565;
-  }
-  
-  100%{
-    color:#AC92EC;
-  }
 }
 
 
 .main{
-  background-color: #03001C;
+  background-color: #a7a7a7;
   padding: 20px;
   border-radius: 4em;
   margin: auto;
@@ -148,24 +72,23 @@
 }
 
 .item2{
-  display: flex;
-  flex-direction: row;
-  padding-top: 50px;
+  display: grid;
+  grid-gap: 1em;
+  gap: 1em;
+  grid-template-columns: 180px 180px;
+  grid-auto-rows: 50px 50px;
+  justify-content: center;
+  padding-top: 10px;
+  margin-top: 40px;
 }
-.item21{
-  display: flex;
-  flex-direction: column;
 
-}
-
-.item22{
-  display: flex;
-  flex-direction: column;
-}
 
 #input2{
   height: auto;
-  width: auto;
+  margin: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  width: 73%;
 }
 
 /*iNPUT URL*/
@@ -179,9 +102,9 @@
   --gutterLg: 1.6rem;
   --gutterXl: 2.4rem;
   --gutterXx: 7.2rem;
-  --colorPrimary400: #7e57c2;
-  --colorPrimary600: #5e35b1;
-  --colorPrimary800: #4527a0;
+  --colorPrimary400: #02b0cb;
+  --colorPrimary600: #80dff2;
+  --colorPrimary800: #d8f2f6;
   --fontFamily: "Dosis", sans-serif;
   --fontSizeSm: 1.2rem;
   --fontSizeMd: 1.6rem;
@@ -208,12 +131,16 @@
   --inputTransitionTF: var(--transitionTF);
 }
 
+.recharts-wrapper{
+  margin: auto;
+}
+
 .Input-text {
   display: flex;
   margin: 0;
   padding: var(--inputPaddingV) var(--inputPaddingH);
-  color: #3a1678;
-  width: 100%;
+  color: #00deff;
+  width: 800px;
   font-family: inherit;
   font-size: var(--inputFontSize);
   font-weight: inherit;
@@ -224,7 +151,7 @@
 }
 
 .Input-text::placeholder {
-  color: #a1bfce;
+  color: #262c2f4a;
 }
 
 .Input-text:focus {
@@ -285,9 +212,9 @@ input Commits
   --gutterLg: 1.6rem;
   --gutterXl: 2.4rem;
   --gutterXx: 7.2rem;
-  --colorPrimary400: #A0D468;
-  --colorPrimary600: #A0D468;
-  --colorPrimary800: #FFCE54;
+  --colorPrimary400: #00deff;
+  --colorPrimary600: #80dff2;
+  --colorPrimary800: #d8f2f6;
   --fontFamily: "Dosis", sans-serif;
   --fontSizeSm: 1.2rem;
   --fontSizeMd: 1.6rem;
@@ -318,7 +245,7 @@ input Commits
   display: flex;
   margin: 0;
   padding: var(--inputPaddingV) var(--inputPaddingH);
-  color: #69913f;
+  color: #00deff;
   width: 100%;
   font-family: inherit;
   font-size: var(--inputFontSize);
@@ -330,7 +257,7 @@ input Commits
 }
 
 .InputCom-text::placeholder {
-  color: #a1bfce;
+  color: #262c2f4a;
 }
 
 .InputCom-text:focus {
@@ -383,42 +310,72 @@ input Commits
 
 /*Table*/
 .table{
-  padding-right: 80px;
+  margin: 0;
+  width:fit-content;
 }
 
+.table .rc-table-row {
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.rc-table-cell{
+  padding: 20px;
+  border-bottom: 1px solid #271010;
+  border-left: 1px solid #271010;
+  border-right: 1px solid #271010;
+  border-top: 1px solid #271010;
+}
+
+.rc-table-thead{
+  font-size: 20px;
+  color: #00deff;
+  background-color: aliceblue;
+}
+
+/*nul*/
+#metricNul{
+  padding: 20px;
+  font-size: 31px;
+  border-radius: 13px;
+  background-color: #cdcdcd;
+  width: 540px;
+  margin: auto;
+  margin-bottom: 20px;
+  color: #060612;
+}
 
 /*Investigate Button*/
 .investigate{
-  position:relative;
-  height: 60px;
-  background-color: #142d4c;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ececec;
-  font-weight: 600;
-  letter-spacing: 2px;
-  padding-left: 2.5em;
-  margin: auto;
-  border-radius: 2em;
-  transition: padding 0.5s ease 0s;
-  border: none;
-  width: 170px;
-  height: auto;
-  line-height: 2em;
-  text-align: center;
-  overflow: hidden;
-  background-size: 300%;
-  text-transform: uppercase;
-  cursor: pointer;
-  z-index: 1;
-  border: none;
+  position: relative;
+    height: 60px;
+    background-color: #a7a7a7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #5ddeff;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding-left: 2.5em;
+    margin: auto;
+    transition: padding 0.5s ease 0s;
+    border: none;
+    width: 170px;
+    height: auto;
+    line-height: 2em;
+    text-align: center;
+    overflow: hidden;
+    background-size: 300%;
+    text-transform: uppercase;
+    cursor: pointer;
+    z-index: 1;
+    border: none;
 }
 
 .investigate:hover{
   padding-left: 0px;
   padding-right: 2.5em;
-  color: #f441a5;
+  color: #fafafa;
   cursor: pointer;
 }
 
@@ -454,6 +411,23 @@ input Commits
   transform: translate(180px) skew(35deg);
 }
 
+/*table2*/
+#my-table{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+/*select a method*/
+#methods{
+  padding: 20px;
+  font-size: 31px;
+  border-radius: 13px;
+  background-color: #cdcdcd;
+  width: 382px;
+  margin: auto;
+  margin-bottom: 20px;
+  color: #060612;
+}
 
 ul{
   margin: 0;
@@ -492,12 +466,52 @@ ul li:hover a {
 }
 
 
+.slider {
+  -webkit-appearance: slider-vertical!important;
+  width: 100px!important;
+  height: 200px!important;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
 
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: slider-vertical!important;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #04AA6D;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #04AA6D;
+  cursor: pointer;
+}
+
+.slidecontainer{
+  position: sticky;
+  display: inline-block;
+    top: 10px!important;
+    padding-left: 0px;
+    padding-top: 0px;
+    right: 1277px!important;
+    width: 100px!important;
+    right: 0px;
+}
 
 .gobutton{
   font-family: 'Chakra Petch', sans-serif;
   position: relative;
-  background: #7983ff;
+  background: #00deff;
   padding: 0.5rem 1rem;
   font-size: 1.2rem;
   border: none;
@@ -505,8 +519,6 @@ ul li:hover a {
   cursor: pointer;
   outline: none;
   overflow: hidden;
-  margin-top: 10px;
-  margin-right: 350px;
   border-radius: 0.4rem;
 }
 
@@ -522,7 +534,7 @@ ul li:hover a {
   top: var(--y);
   width: var(--size);
   height: var(--size);
-  background: radial-gradient(circle closest-side, pink, transparent);
+  background: radial-gradient(circle closest-side, #80eeff, transparent);
   transform: translate(-50%, -50%);
   transition: width 0.2s ease, height 0.2s ease;
 }
@@ -537,7 +549,7 @@ history button
 .historybutton{
   font-family: 'Chakra Petch', sans-serif;
   position: relative;
-  background: #93da48;
+  background: #060612;
   padding: 0.5rem 1rem;
   font-size: 1.2rem;
   border: none;
@@ -545,8 +557,7 @@ history button
   cursor: pointer;
   outline: none;
   overflow: hidden;
-  margin-top: 10px;
-  margin-right: 350px;
+  
   border-radius: 0.4rem;
 }
 
@@ -562,7 +573,7 @@ history button
   top: var(--y);
   width: var(--size);
   height: var(--size);
-  background: radial-gradient(circle closest-side, rgb(151, 173, 212), transparent);
+  background: radial-gradient(circle closest-side, rgb(50, 55, 63), transparent);
   transform: translate(-50%, -50%);
   transition: width 0.2s ease, height 0.2s ease;
 }
@@ -782,10 +793,10 @@ history button
 }
 
 .btn{
-  position: relative;
+  
   display: inline-block;
   padding: 15px;
-  background-color: #03001C;
+  background-color: #a7a7a7;
   cursor: pointer;
   outline: none;
   vertical-align: middle;
@@ -794,17 +805,14 @@ history button
   border-radius: 25px;
   -webkit-transition: width 0.5s;
   transition: width 0.5s;
-  left: 20px;
-  top: 50px;
-  max-width: 500px;
-  min-height: 100px;
-  border:  #03001c;
-  background: #03001c;
+  max-width: 323px;
+  min-height: 73px;
+  border:  #a7a7a7;
+  background: #a7a7a7;
   background-clip: padding-box;
   position: relative;
   left: 20px;
   top: 50px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -839,7 +847,7 @@ history button
   transition: color 1s;
   vertical-align: right;
   overflow: hidden;
-  color: #03001C;
+  color: #a7a7a7;
   word-wrap: break-word;
   height: fit-content;
   max-width: min-content;
@@ -867,7 +875,7 @@ history button
   height: 50px;
   left: 10;
   display: flex;
-  color: #b6eada;
+  color: #ffffff;
   font-size: 2.5em;
   justify-content: left;
   
@@ -940,13 +948,35 @@ Slider
 
 
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 895px) {
   .box{
-    font-size: 20px;
+    font-size: 80px;
   }
 
   .welcomeFlex{
     width: 450px;
   }
 
+  .Input-text{
+    width: 450px;
+
+  }
+  /*Commit - Button*/
+  .InputCom-text{
+    width: 121.2px;
+    height: 46px;
+  }
+
+  /*StartAnalysis - Button*/
+  /*HistoryAnalysis - Button*/
+  /*QuickAnalysis - Button*/
+  .gobutton, .historybutton{
+    width: 162px;
+    height: 46px;
+  }
+  .historybutton span{
+    font-size: 18px;
+  }
+
+  
 }

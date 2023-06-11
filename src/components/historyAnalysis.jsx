@@ -17,7 +17,9 @@ class HistoryAnalysis extends Component {
         super(props);
     }
 
-    state = {  }
+    state = { 
+      libNameForSecondDiagram: 'saad',
+    }
 
     test = () => {
       const com = this.props.comm;
@@ -26,6 +28,8 @@ class HistoryAnalysis extends Component {
 
     onClick =(key)=>{
       console.log("key: " + key );
+      document.getElementById("diagramWithMetrics").style.display="flex";
+      this.setState({libNameForSecondDiagram: key});
     }
 
     render() {
@@ -48,11 +52,11 @@ class HistoryAnalysis extends Component {
       }];
       for(var i=0;i<this.props.comm; i++){
         var v=i+1;
-        headers.push( {title:'v '+v, dataIndex:'v'+v, key:'v'+v, width:100} );
+        headers.push( {title:'Version'+v, dataIndex:'v'+v, key:'v'+v, width:100} );
       }
       headers.push(
         {
-          title: 'OPERATIONS',
+          title: 'Operations',
           dataIndex: '',
           key: 'd',
           render: (text, record) => (
@@ -80,7 +84,12 @@ class HistoryAnalysis extends Component {
           if(!uniqueLibs.includes(lib)){
             uniqueLibs.push(lib);
           }
-          libsSha.push({v: "v"+version, lib: lib});
+          libsSha.push({
+            v: "v"+version, lib: lib, pucd: this.props.data[i].dataProjectVersion[j].pucd,
+            puci: this.props.data[i].dataProjectVersion[j].puci,
+            lduf: this.props.data[i].dataProjectVersion[j].lduf,
+            liuf: this.props.data[i].dataProjectVersion[j].liuf
+          });
         }
       }
 
@@ -115,12 +124,21 @@ class HistoryAnalysis extends Component {
       var data = [];
       data = dataFirstChart;
 
+      //second chart
+      var dataChart2=[];
+      for(var i=0;i<libsSha.length;i++){
+        if(this.state.libNameForSecondDiagram==libsSha[i].lib){
+          dataChart2.push({commit:libsSha[i].v, 
+                          pucd: libsSha[i].pucd, 
+                          puci: libsSha[i].puci, 
+                          lduf: libsSha[i].lduf, 
+                          liuf: libsSha[i].liuf});
+        }
+      }
 
 
       return (
         <React.Fragment>    
-
-          <button onClick={this.test}> button</button>
 
           <LineChart
           width={500}
@@ -144,10 +162,51 @@ class HistoryAnalysis extends Component {
             stroke="#8884d8"
             activeDot={{ r: 8 }}
           />
+
           </LineChart>
 
             <div id="my-table">
               <Table columns={headers} data={dataTable}/>
+            </div>
+
+            <div id='diagramWithMetrics' style={{display:"none"}}>
+              <LineChart
+                width={500}
+                height={300}
+                data={dataChart2}
+                margin={{
+                  top: 5,
+                  right: 30,
+                  left: 20,
+                  bottom: 5
+                }}
+                >
+                <CartesianGrid strokeDasharray="6 6" />
+                <XAxis dataKey="commit" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="pucd"
+                  stroke="#8890d8"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="puci"
+                  stroke="#8456d8"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="lduf"
+                  stroke="#888908"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="liuf"
+                  stroke="#823458"
+                />
+              </LineChart>
             </div>
           </React.Fragment>
 

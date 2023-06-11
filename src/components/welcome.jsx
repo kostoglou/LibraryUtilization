@@ -21,6 +21,7 @@ class Welcome extends Component {
         cursor3.style.setProperty('--y', y + 'px');
     }
 
+
     render() { 
         return (
             <React.Fragment>
@@ -33,23 +34,20 @@ class Welcome extends Component {
                         </div>
                     </div>
                     <div class="item2">
-                        <div class="item21">
-                            <button onMouseMove={ this.handleCursor }
-                                className="gobutton" onClick={this.props.ongoclick}> <span>Start Analysis</span> 
-                            </button>
-                            <button onMouseMove={ this.handleCursor }
-                                className="gobutton" /*</div>onClick={this.props.onHistoryclick}*/> <span>Quick Analysis</span> 
-                            </button>
+                        
+                        <button onMouseMove={ this.handleCursor }
+                            className="gobutton" onClick={this.props.ongoclick}> <span>Start Analysis</span> 
+                        </button>
+                        <div class="InputCom">
+                            <input type="number" id="input2" class="InputCom-text" placeholder="Commits"></input>
+                            <label for="input2" class="InputCom-label">Commits</label>
                         </div>
-                        <div class="item22">
-                            <div class="InputCom">
-                                <input type="text" id="input2" class="InputCom-text" placeholder="Commits"></input>
-                                <label for="input2" class="InputCom-label">Commits</label>
-                            </div>
-                            <button onMouseMove={ this.handleCursor }
-                                className="historybutton" onClick={this.props.onHistoryclick}> <span>History Analisis</span> 
-                            </button>
-                        </div>
+                        <button onMouseMove={ this.handleCursor }
+                            className="gobutton" /*</div>onClick={this.props.onHistoryclick}*/> <span>Quick Analysis</span> 
+                        </button>
+                        <button onMouseMove={ this.handleCursor }
+                            className="historybutton" onClick={this.props.onHistoryclick}> <span>History Analisis</span> 
+                        </button>
                     </div>
                         
                     <div id='waittingAnalysis' class="lds-roller" style={{display:"none"}}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>

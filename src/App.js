@@ -16,6 +16,8 @@ class App extends Component {
   state = {
     showTable: false,
     showWelcome: true,
+    thereIsData1: false,
+    thereIsData2: false,
     showHistoryAnalysis: false,
     commitsforhistory: 2,
     showDiagram1: false, 
@@ -72,7 +74,7 @@ class App extends Component {
         var obj= JSON.parse(JSON.stringify(json));
 
         if(obj.projectModuleDTOS.length==1){
-          this.setState({nul: "nul: "+obj.projectModuleDTOS[0].nul});
+          this.setState({nul: obj.projectModuleDTOS[0].nul});
           var data=[];
           var listDataForLibrary=[];
 
@@ -124,16 +126,26 @@ class App extends Component {
 
             listDataForLibrary.push({libraryname: lib, projectModuleDTOS:listprojectModuleDTOS});
           }
+        
           this.setState({dataTable: data});
           this.setState({dataFirstMethods : listDataForLibrary});
+          if(listDataForLibrary.length!=0){
+            this.setState({thereIsData1: true});
+            this.setState({ showTable: true });
+            this.setState({ showWelcome: false });
+            document.getElementById("backButtonAllId").style.display = "flex";
+          console.log("ik");
+          }
+          else{
+            console.log("ak");
+
+          }
         }
 
       })
       .catch((error) => console.error(error));
 
-      this.setState({ showTable: true });
-      this.setState({ showWelcome: false });
-      document.getElementById("backButtonAllId").style.display = "flex";
+      
     }
 
   handleHistoryClick = async () => {
@@ -200,11 +212,20 @@ class App extends Component {
         }
         dataProject= dataProject.reverse();
         this.setState({dataProject: dataProject});
+
+        if(dataProject.length!=0){
+          this.setState({thereIsData2: true});
+          document.getElementById("backButtonAllId").style.display = "flex";
+          this.setState({ showWelcome: false });
+          this.setState({ showHistoryAnalysis: true });
+          console.log("ik");
+        }
+        else{
+          console.log("ak");
+
+        }
         
-        document.getElementById("backButtonAllId").style.display = "flex";
-        console.log("ok");
-        this.setState({ showWelcome: false });
-        this.setState({ showHistoryAnalysis: true });
+       
       })
       .catch((error) => console.error(error));
       
@@ -234,8 +255,9 @@ class App extends Component {
 
     return (
       <body class="body">
+        
 
-        <header class="header"><h1 className="box" id='libraryUtilization'>Library Utilization</h1></header>
+        <header class="header"><h1 className="box" id='libraryUtilization'>Library <br></br>Utilization</h1></header>
         
         <aside class="asideInfo">
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -252,7 +274,7 @@ class App extends Component {
         
         
         <main class="main">
-          {this.state.showWelcome && <Welcome ongoclick={this.handleGoClick} onHistoryclick={this.handleHistoryClick}/>}
+          {this.state.showWelcome && <Welcome ongoclick={this.handleGoClick} onHistoryclick={this.handleHistoryClick} thereIsData2={this.state.thereIsData2}/>}
           {this.state.showHistoryAnalysis && <HistoryAnalysis data={this.state.dataProject} comm={this.state.commitsforhistory} />}
           {this.state.showTable && <MyTable onclickoftableoflibrary={this.handleClickofTableofLibrary}
               data={this.state.dataTable} nul={this.state.nul} onbackclick={this.handleBackClick} />}

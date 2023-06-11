@@ -48,7 +48,7 @@ class MyTable extends Component {
               width: 200,
             },
             {
-              title: 'OPERATIONS',
+              title: 'Operations',
               dataIndex: '',
               key: 'd',
               render: (text, record) => (
@@ -63,7 +63,7 @@ class MyTable extends Component {
           <React.Fragment>
           
               <div class="table">
-                <h3 id='metricNul'> {this.props.nul} </h3>
+                <h3 id='metricNul'> Number of used libraries: {this.props.nul} </h3>
                 
                 <Table columns={columns} data={this.props.data} />
                

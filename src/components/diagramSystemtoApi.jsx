@@ -3,7 +3,7 @@ import { Network } from 'vis-network';
 
 function DiagramSystemtoApi(props)  {
 
-  const [value, setValue] = useState(300);
+  const [value, setValue] = useState(30);
   const [firstMethod, setFirstMethod] = useState("");
   const [callGraph, setCallGraph] = useState("");
 
@@ -35,7 +35,7 @@ function DiagramSystemtoApi(props)  {
               nodes.push({id: callgraph[i].previousMethod, label: classAndMethod});
             }
             else if(!nodes.some(e => e.id === callgraph[i].previousMethod) && callgraph[i].previousMethod == first){
-              nodes.push({id: callgraph[i].previousMethod, label: classAndMethod, color: { border: "#FF0000" }});
+              nodes.push({id: callgraph[i].previousMethod, label: classAndMethod, color: { border: "#FF0000"}});
             }
             if(!nodes.some(e => e.id === callgraph[i].qualifiedName)){
               nodes.push({id: callgraph[i].qualifiedName, label: classAndMethod});
@@ -52,7 +52,7 @@ function DiagramSystemtoApi(props)  {
 
     edges = B;
     
-    document.getElementById("GraphDiv").style.display="block";
+    document.getElementById("GraphDiv").style.display="flex";
     
     var container = document.getElementById("aboutMethodDiv");
       var data = {
@@ -63,8 +63,11 @@ function DiagramSystemtoApi(props)  {
         interaction:{hover:true},
         physics: false,
         autoResize: true,
-        height: '100%',
-        width: '100%',
+        height: '500px',
+        width: '1400px',
+        nodes:{
+          color: '#a7a7a7'
+        },
         edges:{
           arrows: 'to'
         },
@@ -132,7 +135,7 @@ function DiagramSystemtoApi(props)  {
       <div class="classesandMethods"> 
         
             
-        <h3 id="selectedClass" /*onChange={handleChange}*/></h3>
+        <h3 id="methods" > Select a method</h3>
         <ul id="liswithmethodsofclasses" style={{ display: "flex" }}>{listitemsMethodsOfClasses}</ul>
 
         <div id="GraphDiv" style={{display:"none"}}>
