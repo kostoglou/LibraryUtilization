@@ -36,17 +36,17 @@ class Welcome extends Component {
                     <div class="item2">
                         
                         <button onMouseMove={ this.handleCursor }
-                            className="gobutton" onClick={this.props.ongoclick}> <span>Start Analysis</span> 
+                            className="gobutton" onClick={()=>this.props.ongoclick("startAnalysisWithMetricsForOneProjectVersion")}> <span>New Analysis</span> 
                         </button>
                         <div class="InputCom">
-                            <input type="number" id="input2" class="InputCom-text" placeholder="Commits"></input>
+                            <input type="number"  id="input2" class="InputCom-text" placeholder="Commits"></input>
                             <label for="input2" class="InputCom-label">Commits</label>
                         </div>
                         <button onMouseMove={ this.handleCursor }
-                            className="gobutton" /*</div>onClick={this.props.onHistoryclick}*/> <span>Quick Analysis</span> 
+                            className="gobutton" onClick={()=>this.props.ongoclick("getAnalysisWithMetrics")}> <span>Last Analysis</span> 
                         </button>
                         <button onMouseMove={ this.handleCursor }
-                            className="historybutton" onClick={this.props.onHistoryclick}> <span>History Analisis</span> 
+                            className="historybutton" onClick={this.props.onHistoryclick}> <span>Historic Analisis</span> 
                         </button>
                     </div>
                         

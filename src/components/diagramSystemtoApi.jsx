@@ -64,7 +64,7 @@ function DiagramSystemtoApi(props)  {
         physics: false,
         autoResize: true,
         height: '500px',
-        width: '1400px',
+        width: '100%',
         nodes:{
           color: '#a7a7a7'
         },
@@ -139,7 +139,7 @@ function DiagramSystemtoApi(props)  {
         <ul id="liswithmethodsofclasses" style={{ display: "flex" }}>{listitemsMethodsOfClasses}</ul>
 
         <div id="GraphDiv" style={{display:"none"}}>
-          <div id="aboutMethodDiv" style={{height: "500px"}}></div>
+          <div id="aboutMethodDiv" style={{height: "500px", width:"90%"}}></div>
           <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
           <div class="slidecontainer">
             <input type="range" min="1" max="900" value={value} class="slider" id="myRange" defaultValue="3" step="1" onChange={handleChange} 
