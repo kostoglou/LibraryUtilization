@@ -3,7 +3,7 @@ import { Network } from 'vis-network';
 
 function DiagramSystemtoApi(props)  {
 
-  const [value, setValue] = useState(30);
+  const [value, setValue] = useState(14);
   const [firstMethod, setFirstMethod] = useState("");
   const [callGraph, setCallGraph] = useState("");
 

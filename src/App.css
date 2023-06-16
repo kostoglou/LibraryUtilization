@@ -42,6 +42,9 @@
   padding: 1px;
   width: 112px;
 }
+.more-info{
+      margin: revert;
+}
 
 
 .header{
@@ -55,7 +58,22 @@
   padding-top: 20px;
 }
 
+.header2{
+  
+  font-family: 'Chakra Petch', sans-serif;
+  background-color: #060612;
+  letter-spacing: 3px;
+  padding: 10px;
+  font-size: 15px;
+  text-shadow: 1px 1px #a7a7a7;
+  align-self: normal;
+  padding-top: 20px;
+  margin-top: 0;
+}
+
 .moreInfoButton{
+  
+  margin: 0;
   font-family: 'Chakra Petch', sans-serif;
   position: relative;
   background: #00deff;
@@ -608,11 +626,9 @@ history button
 /*BACK BUTTON*/
 .backbutton{
   font-family: 'Chakra Petch', sans-serif;
-  position:relative;
-  width: 200px;
-  height: 60px;
-  background-color: #142d4c;
-  display: flex;
+  background: #00deff;
+  padding: 0.5rem 1rem;
+  outline: none;
   justify-content: center;
   align-items: center;
   color: #ececec;
@@ -629,16 +645,17 @@ history button
   line-height: 2em;
   text-align: center;
   overflow: hidden;
-  background-size: 200%;
   text-transform: uppercase;
   cursor: pointer;
   z-index: 1;
+  left: 20px;
+  top: 280px;
 }
 
 .backbutton:hover{
   padding-right: 0px;
   padding-right: 1em;
-  color: #417eda;
+  color: #d3e9ec;
   cursor: pointer;
 }
 
@@ -979,6 +996,26 @@ Slider
 
 .classesandMethods{
   width: 1400px;
+}
+
+.moreInfoText{
+  font-family: 'Kumbh Sans', sans-serif;  
+  text-align: left;    
+  margin: auto;
+}
+
+.metricsNamesInfo{
+  font-weight: bold;
+
+}
+
+.textboxInfo{
+  margin: auto;
+  border-radius: 10px;
+  border: 2px solid #00deff;
+  background-color: #060612;
+  padding: 20px;
+
 }
 
 @media screen and (max-width: 1450px) {
